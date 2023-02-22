@@ -1,8 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 const CreatedNFTS = () => {
+
   return (
-    <div>CreatedNFTS</div>
+      <div>
+        CreatedNFTS
+      </div>
   )
 }
 

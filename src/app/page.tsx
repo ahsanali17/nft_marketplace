@@ -1,6 +1,6 @@
 const Home = () => (
     <div>
-      Yo
+      <h1>YOOOOOOOOOOO</h1>
     </div>
 );
 
