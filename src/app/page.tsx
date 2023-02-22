@@ -8,6 +8,7 @@ import images from '../assets';
 import { makeId } from 'utils/makeId';
 
 const Home = () => {
+  const [hideButtons, setHideButtons] = useState(false)
   const { theme, setTheme } = useTheme();
   const parentRef = useRef(null);
   const scrollRef = useRef(null);
@@ -15,28 +16,51 @@ const Home = () => {
   const handleScroll = (direction: string) => {
     const { current } = scrollRef;
 
+    const scrollAmount = window.innerWidth > 1800 ? 270 : 210;
+
     if (current !== null && current !== undefined) {
       if(direction === 'left') {
-        current.scrollLeft -= 100;
+        current.scrollLeft -= scrollAmount;
       }
 
       if(direction === 'right') {
-        current.scrollLeft += 100;
+        current.scrollLeft += scrollAmount;
       }
     }
   }
 
+  const isScrollable = () => {
+    const { current } = scrollRef;
+    const { current: parent } = parentRef;
+
+    if(current?.scrollWidth >= parent?.offsetWidth) {
+      setHideButtons(false)
+    } else {
+      setHideButtons(true);
+    }
+  }
+  useEffect(() => {
+    isScrollable()
+
+    window.addEventListener('resize', isScrollable);
+
+    return () => {
+      window.removeEventListener('resize', isScrollable);
+
+    }
+  })
+
   return (
-    <div className="flex justify-center sm:px-4 p-12">
+    <div className="flex justify-center sm:px-4 p-12" style={{ padding: '6rem 2rem'}}>
       <div className="w-full minmd:w-4/5">
         <Banner
           bannerText='Discover, collect and sell extraordinary NFTs'
-          parentStyles='justify-start mb-6 h-72 sm:h-60 p-12 xs:p-4 xs:h-44 rounded-3xl'
-          childStyles='md:text-4xl sm:text-2xl xs:text-xl text-left'
+          parentStyles='mb-6 h-72 sm:h-60 p-12 xs:p-4 xs:h-44 rounded-3xl'
+          childStyles='md:text-4xl sm:text-2xl xs:text-xl text-center'
         />
 
         <div className="font-poppins dark:text-white text-nft-black-1 text-2xl minlg:text-4xl font-semibold ml-4 xs:ml-0">
-          <h1 className="font-poppins dark:text-white text-nft-black-1 text-2xl minlg:text-4xl font-semibold ml-4 xs:ml-0">
+          <h1 className="font-poppins dark:text-white text-nft-black-1 text-2xl minlg:text-4xl font-semibold ml-4 xs:ml-0" style={{fontWeight: 'bold', paddingTop: '2rem', fontSize: '1.8rem'}}>
             Best Creators
           </h1>
           <div
@@ -57,33 +81,35 @@ const Home = () => {
                   creatorEth={10 - i * 0.5}
                 />
               ))}
-              <>
-                <div
-                  onClick={() => handleScroll('left')} className="absolute w-8 h-8 minlg:w-12 minlg:h-12 top-45 cursor-pointer left-0"
-                >
-                  <Image
-                    src={images.left}
-                    layout="fill"
-                    objectFit="contain"
-                    alt="left_arrow"
-                    className={theme === 'light' ? 'filter invert' : undefined}
-                  />
-                </div>
-                <div
-                  onClick={() => handleScroll('right')} className="absolute w-8 h-8 minlg:w-12 minlg:h-12 top-45 cursor-pointer right-0"
-                  style={{ right: '0'}}
-                >
-                  <Image
-                    src={images.right}
-                    layout="fill"
-                    objectFit="contain"
-                    alt="left_arrow"
-                    className={theme === 'light' ? 'filter invert' : undefined}
-                  />
-                </div>
-              </>
+              {!hideButtons &&
+                <>
+                  <div
+                    onClick={() => handleScroll('left')} className="absolute w-8 h-8 minlg:w-12 minlg:h-12 top-45 cursor-pointer left-0"
+                    style={{ left: '0', top: '7rem'}}
+                  >
+                    <Image
+                      src={images.left}
+                      layout="fill"
+                      objectFit="contain"
+                      alt="left_arrow"
+                      className={theme === 'light' ? 'filter invert' : undefined}
+                    />
+                  </div>
+                  <div
+                    onClick={() => handleScroll('right')} className="absolute w-8 h-8 minlg:w-12 minlg:h-12 top-45 cursor-pointer right-0"
+                    style={{ right: '0', top: '7rem'}}
+                  >
+                    <Image
+                      src={images.right}
+                      layout="fill"
+                      objectFit="contain"
+                      alt="left_arrow"
+                      className={theme === 'light' ? 'filter invert' : undefined}
+                    />
+                  </div>
+                </>
+              }
             </div>
-
           </div>
         </div>
 
