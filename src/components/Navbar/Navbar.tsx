@@ -1,13 +1,11 @@
 'use client';
-import {useState, useEffect, useContext, SetStateAction, Dispatch } from 'react';
-import { useRouter } from 'next/navigation';
+import {useState, SetStateAction, Dispatch } from 'react';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import images from '../../assets'
-import {Button} from '..';
-import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context';
+import { ConnectToWallet } from '..';
 
 type menuItemsProps = {
   isMobile: boolean,
@@ -49,38 +47,10 @@ const MenuItems = ({isMobile, active, setActive}: menuItemsProps) => {
   )
 }
 
-type buttonGroupProps = {
-  setActive: Dispatch<SetStateAction<string>>,
-  router: AppRouterInstance
-}
-
-const ButtonGroup = ({ setActive, router }: buttonGroupProps) => {
-  const hasConnected = false;
-
-  return hasConnected
-  ? (
-      <Button
-        btnName="Create"
-        classStyles="mx-2 rounded-xl"
-        handleClick={() => {
-          setActive('');
-          router.push('/create-nft');
-        }}
-      />
-    )
-  :
-    <Button
-      btnName="Connect"
-      classStyles="mx-2 rounded-xl"
-      handleClick={() => {}}
-    />
-};
-
 const Navbar = () => {
   const [active, setActive] = useState('Explore NFTs');
-  const router = useRouter();
   const { theme, setTheme } = useTheme();
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
   console.log({theme});
 
   return (
@@ -120,9 +90,7 @@ const Navbar = () => {
         <div className='md:hidden flex'>
           <MenuItems active={active} setActive={setActive} isMobile={false} />
           <div className='ml-4'>
-            <ButtonGroup setActive={setActive} router={router}>
-
-            </ButtonGroup>
+            <ConnectToWallet />
           </div>
         </div>
       </div>
@@ -158,7 +126,7 @@ const Navbar = () => {
             <MenuItems active={active} setActive={setActive} isMobile />
           </div>
           <div className='p-4 border-t dark:border-nft-black-1 border-nft-gray-1'>
-            <ButtonGroup setActive={setActive} router={router} />
+            <ConnectToWallet />
           </div>
         </div>
       )}
