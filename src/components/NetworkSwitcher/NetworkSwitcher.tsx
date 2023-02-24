@@ -14,7 +14,7 @@ const NetworkSwitcher = () => {
   };
 
   return (
-    <div className="flex flex-col items-center mt-1">
+    <div className="flex flex-col items-center">
       <input
         type="checkbox"
         id="network-toggle"
