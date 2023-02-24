@@ -1,0 +1,183 @@
+'use client';
+import { useEffect } from 'react';
+import { useNetwork } from 'wagmi';
+
+import { getEllipsisTxt } from 'utils/format';
+import Button from '../Button/Button';
+import { getPriceInUSDAtTimeOfTransfer } from '@/pages/api/crypto-compare/getPriceInUSDAtTransfer';
+
+interface TransactionData {
+ from: {
+   config: {
+     items: unknown;
+   };
+   _value: string;
+ };
+ to: {
+   config: {
+     items: unknown;
+   };
+   _value: string;
+ };
+ nonce: string;
+ data: string;
+ value: {
+   rawValue: string;
+ };
+ hash: string;
+ chain: {
+   config: {
+     items: unknown;
+   };
+   _value: string;
+   _chainlistData: {
+     name: string;
+     chain: string;
+     icon: string;
+     rpc: string[];
+     faucets: unknown[];
+     nativeCurrency: {
+       name: string;
+       symbol: string;
+       decimals: number;
+     };
+     infoURL: string;
+     shortName: string;
+     chainId: number;
+     networkId: number;
+     slip44: number;
+     ens: {
+       registry: string;
+     };
+     explorers: {
+       name: string;
+       url: string;
+       standard: string;
+     }[];
+   };
+ };
+ gas: string;
+ gasPrice: string;
+ index: number;
+ blockNumber: string;
+ blockHash: string;
+ blockTimestamp: string;
+ cumulativeGasUsed: string;
+ gasUsed: string;
+ receiptStatus: number;
+ logs: unknown[];
+}
+
+const TransactionCard = ({ transaction }: any) => {
+ const txArray = Object.entries(transaction);
+ const [txData] = txArray;
+ const { chain: currentNetworksChainId } = useNetwork();
+ const [
+   _data,
+   {
+    from: { _value: fromValue },
+    to: { _value: toValue },
+    nonce,
+    data,
+    value: { rawValue: valueRawValue },
+    hash,
+    chain: {
+     _value: chainValue,
+     _chainlistData: {
+      name: chainName,
+      chain: chainId,
+      icon: chainIcon,
+      rpc: chainRpc,
+      nativeCurrency: { name: currencyName, symbol: currencySymbol },
+      infoURL: chainInfoUrl,
+      shortName: chainShortName,
+      explorers: [{ url: explorerUrl }],
+     },
+    },
+    gas,
+    gasPrice,
+    index,
+    blockNumber,
+    blockHash,
+    blockTimestamp,
+    cumulativeGasUsed,
+    gasUsed,
+    receiptStatus,
+    logs,
+   },
+ ] = txData as [string, TransactionData];
+
+  const handleExplorerLink = () => {
+    window.open(`${explorerUrl}/tx/${hash}`, '_blank');
+  }
+
+  const currency = 'USD'
+
+  useEffect(() => {
+   getPriceInUSDAtTimeOfTransfer({blockTimestamp, currencySymbol, currency})
+   console.log(txData);
+   // console.log(currencySymbol, "***")
+  }, [blockTimestamp])
+
+  return (
+   <div
+    className="flex-1 min-w-215 max-w-max xs:max-w-none sm:w-full sm:min-w-155 minmd:min-w-256 minlg:min-w-327 dark:bg-white bg-white rounded-2xl p-4 m-4 minlg:m-8 sm:my-2 sm:mx-2 cursor-pointer shadow-md"
+   >
+    <div className="mt-3 flex flex-col">
+     <div className="flex items-center justify-between">
+      <p className="text-nft-black-1 font-semibold text-md">{getEllipsisTxt(hash)}</p>
+      <p className={` text-nft-black-1 font-semibold text-md`}>
+        {receiptStatus === 0 ? 'Failed' : 'Success'}
+      </p>
+     </div>
+     <div className="flex items-center justify-between">
+      <p className="text-nft-black-3 font-semibold text-sm">
+       From:
+      </p>
+      <p className="text-nft-black-1 font-semibold text-sm">
+       {getEllipsisTxt(fromValue)}
+      </p>
+     </div>
+     <div className="flex items-center justify-between">
+      <p className="text-nft-black-3 font-semibold text-sm">
+       To:
+      </p>
+      <p className="text-nft-black-1 font-semibold text-sm">
+       {getEllipsisTxt(toValue)}
+      </p>
+     </div>
+     <div className="flex items-center justify-between">
+      <p className="text-nft-black-3 font-semibold text-sm">
+       Gas used:
+      </p>
+      <p className="text-nft-black-1 font-semibold text-sm">
+       {gasUsed.toString()}
+      </p>
+     </div>
+     <div className="flex items-center justify-between">
+      <p className="text-nft-black-3 font-semibold text-sm">
+       Date:
+      </p>
+      <p className="text-nft-black-1 font-semibold text-sm">
+       {new Date(blockTimestamp).toLocaleDateString()}
+      </p>
+     </div>
+    </div>
+    <div className='flex flex-row justify-between mt-4 p-1'>
+     <div>
+      <Button btnName='More' classStyles='rounded-2xl' handleClick={() => {}} />
+     </div>
+     <div>
+      <Button
+       btnName='Link'
+       classStyles='rounded-2xl'
+       handleClick={handleExplorerLink}
+      />
+
+     </div>
+    </div>
+   </div>
+  );
+};
+
+export default TransactionCard;
