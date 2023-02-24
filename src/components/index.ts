@@ -6,3 +6,4 @@ export {default as CreatorCard} from './CreatorCard/CreatorCard';
 export {default as NFTCard} from './NFTCard/NFTCard';
 export {default as Input} from './Input/Input';
 export {default as ConnectToWallet} from './ConnectToWallet/ConnectToWallet';
+export {default as NetworkSwitcher} from './NetworkSwitcher/NetworkSwitcher';

@@ -5,7 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import images from '../../assets'
-import { ConnectToWallet } from '..';
+import { ConnectToWallet, NetworkSwitcher } from '..';
+import { useAccount } from 'wagmi';
 
 type menuItemsProps = {
   isMobile: boolean,
@@ -51,6 +52,8 @@ const Navbar = () => {
   const [active, setActive] = useState('Explore NFTs');
   const { theme, setTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
+  const { isConnected } = useAccount();
+
   console.log({theme});
 
   return (
@@ -92,6 +95,7 @@ const Navbar = () => {
           <div className='ml-4'>
             <ConnectToWallet />
           </div>
+          {isConnected && <NetworkSwitcher />}
         </div>
       </div>
 
