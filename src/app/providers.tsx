@@ -4,8 +4,6 @@ import { WagmiConfig } from 'wagmi';
 import { ThemeProvider } from "next-themes";
 import { SessionProvider } from 'next-auth/react';
 import Script from "next/script";
-import type { AppProps } from 'next/app';
-
 
 import { client } from './wagmiClient';
 import { NFTProvider } from "context/NFTContext";

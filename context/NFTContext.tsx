@@ -4,9 +4,9 @@ import React, { createContext, useContext } from 'react';
 // import { ethers } from 'ethers';
 // import axios from 'axios';
 import { InjectedConnector } from 'wagmi/connectors/injected';
-import { signIn, signOut, useSession } from 'next-auth/react';
+import { signIn, signOut } from 'next-auth/react';
 import { useAccount, useConnect, useDisconnect, useSignMessage } from 'wagmi';
-import { useAuthRequestChallengeEvm } from '@moralisweb3/next';
+import { useAuthRequestChallengeEvm,  } from '@moralisweb3/next';
 
 // import { MarketAddress, MarketAddressABI } from './constants';
 // import { handleAuth, handleDisconnect } from '../src/app/walletConnect';
@@ -24,7 +24,6 @@ export const NFTProvider = ({ children }: any) => {
  const { disconnectAsync } = useDisconnect();
  const { isConnected } = useAccount();
  const { signMessageAsync } = useSignMessage();
- // const { data } = useSession();
  const { requestChallengeAsync } = useAuthRequestChallengeEvm();
 
  const nftCurrency = "ETH";
