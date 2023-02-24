@@ -41,6 +41,9 @@
     "node_modules"
   ],
   "eslintOptions": {
-    "parser": "@typescript-eslint/parser"
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": "./tsconfig.json",
+    }
   }
 }
