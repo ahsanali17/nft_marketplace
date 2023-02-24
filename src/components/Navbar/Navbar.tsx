@@ -7,7 +7,6 @@ import Link from 'next/link';
 import images from '../../assets'
 import { ConnectToWallet, NetworkSwitcher } from '..';
 import { useAccount } from 'wagmi';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type menuItemsProps = {
   isMobile: boolean,
