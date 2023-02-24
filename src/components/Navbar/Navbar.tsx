@@ -100,6 +100,14 @@ const MenuItems = ({ isMobile, active, setActive }: menuItemsProps) => {
                   Create NFTs
                 </Link>
               </div>
+              <div className="w-48 flex justify-center mt-2">
+                <Link
+                  href="/my-transactions"
+                  className="block text-center w-full py-1 text-nft-gray-2 hover:text-nft-black-1 dark:hover:text-nft-gray-1 dark:text-white"
+                >
+                  My Transactions
+                </Link>
+              </div>
             </div>
           )}
         </li>

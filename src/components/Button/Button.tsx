@@ -1,6 +1,6 @@
 type ButtonProps = {
   classStyles: string
-  btnName: string
+  btnName: string,
   handleClick: VoidFunction
 }
 
