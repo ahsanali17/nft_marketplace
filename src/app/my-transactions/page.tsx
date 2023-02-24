@@ -1,18 +1,14 @@
 'use client';
-import { Fragment, useEffect } from 'react';
+import { Fragment } from 'react';
 import { useEvmNativeBalance, useEvmWalletTransactions } from '@moralisweb3/next';
-import { useSession } from 'next-auth/react';
-import { getEllipsisTxt } from 'utils/format';
 import { useAccount, useNetwork } from 'wagmi';
 
 import { TransactionCard } from '@/components';
 
 const MyTransactions = () => {
-  const hoverTrColor = "hover:bg-gray-100";
-  const { data } = useSession();
-  const { isConnected, address } = useAccount();
-
+  const { address } = useAccount();
   const { chain } = useNetwork();
+
   const { data: transactions } = useEvmWalletTransactions({
     address: address,
     chain: chain?.id,

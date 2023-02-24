@@ -1,25 +1,26 @@
 'use client';
 import {useState, useMemo, useCallback, useContext } from 'react';
 
-import { useRouter } from 'next/router';
 import { useDropzone } from 'react-dropzone';
 import Image from 'next/image'
 import { useTheme } from 'next-themes';
 
 import { Button, Input } from '@/components';
 import images from '../../assets';
-
-
+import { NFTContext } from 'context/NFTContext';
 
 const CreatedNFTS = () => {
-  const [fileUrl, setFileUrl] = useState(null);
-  const [formInput, setFormInput] = useState({
-    price: '', name: '', description: ''
-  })
+  const [fileUrl, setFileUrl] = useState<string | undefined | null>(null);
+  const [formInput, setFormInput] = useState({price: '', name: '', description: ''})
   const{ theme } = useTheme();
+  const {uploadToIPFS} = useContext(NFTContext)
 
-  const onDrop = useCallback(() => {
+  const onDrop = useCallback(async (acceptedFiles: File[]) => {
     // upload to ipfs
+    const url = await uploadToIPFS({file: acceptedFiles[0]});
+
+    console.log(url);
+    setFileUrl(url);
   }, []);
 
   const { getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject } = useDropzone({

@@ -9,3 +9,4 @@ export {default as ConnectToWallet} from './ConnectToWallet/ConnectToWallet';
 export {default as NetworkSwitcher} from './NetworkSwitcher/NetworkSwitcher';
 export {default as TransactionCard} from './TransactionCard/TransactionCard';
 export {default as TokenCard} from './TokenCard/TokenCard';
+export {default as MyNFTCard} from './MyNFTCard/MyNFTCard';

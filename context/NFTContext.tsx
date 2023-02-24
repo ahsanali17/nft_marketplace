@@ -10,11 +10,13 @@ import { useAuthRequestChallengeEvm,  } from '@moralisweb3/next';
 
 // import { MarketAddress, MarketAddressABI } from './constants';
 // import { handleAuth, handleDisconnect } from '../src/app/walletConnect';
+// import { uploadToIPFS, uploadToIPFSProps } from '@/pages/api/ipfs/ipfs';
 
 type ContextObjectValue = {
  nftCurrency: string;
  handleAuth:  () => Promise<void>,
- handleDisconnect:  () => Promise<void>
+ handleDisconnect:  () => Promise<void>,
+//  uploadToIPFS: ({ file, setFileUrl }: uploadToIPFSProps) => Promise<string | undefined>,
 }
 
 export const NFTContext = createContext<ContextObjectValue>({} as ContextObjectValue);
@@ -50,14 +52,15 @@ export const NFTProvider = ({ children }: any) => {
  };
 
  const handleDisconnect = async () => {
-  await disconnectAsync();
-  signOut({ callbackUrl: '/' });
- };
+   await disconnectAsync();
+   signOut({ callbackUrl: '/' });
+  };
 
  const defaultContextObject: ContextObjectValue = {
   nftCurrency,
   handleAuth,
-  handleDisconnect
+  handleDisconnect,
+  // uploadToIPFS
  }
 
  return (
