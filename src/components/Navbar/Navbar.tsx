@@ -1,5 +1,5 @@
 'use client';
-import {useState, SetStateAction, Dispatch } from 'react';
+import {useState, SetStateAction, Dispatch, useEffect, useRef } from 'react';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -7,6 +7,7 @@ import Link from 'next/link';
 import images from '../../assets'
 import { ConnectToWallet, NetworkSwitcher } from '..';
 import { useAccount } from 'wagmi';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type menuItemsProps = {
   isMobile: boolean,
@@ -14,39 +15,99 @@ type menuItemsProps = {
   setActive: Dispatch<SetStateAction<string>>,
 }
 
-const MenuItems = ({isMobile, active, setActive}: menuItemsProps) => {
-  const generateLink = (i: number) => {
-    switch (i) {
-      case 0: return '/';
-      case 1: return '/create-nfts';
-      case 2: return '/my-nfts';
-      default: return '/';
-    }
-  }
+const MenuItems = ({ isMobile, active, setActive }: menuItemsProps) => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const { isConnected, address } = useAccount();
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [dropdownRef]);
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
 
   return (
-    <ul className={`list-none flexCenter flex-row ${isMobile && 'flex-col h-full'}
-    `}>
-      {['Explore NFTs', 'Listed NFTs', 'My NFTs'].map((item, i) => (
-        <li
-          key={i}
+    <ul
+      className={`list-none flexCenter flex-row ${
+        isMobile && 'flex-col h-full'
+      }`}
+    >
+      <li
+        className="relative"
+      >
+        <div
           onClick={() => {
-            setActive(item);
+            setActive('Explore NFTs');
           }}
-          className={`flex flex-row items-center font-semibold text-base dark:hover:text-white hover:text-nft-dark mx-3
-            ${active === item
-              ?
-                'dark:text-white text-nft-black-1'
+          className={`flex flex-row items-center font-semibold text-base dark:hover:text-white hover:text-nft-dark mx-3 ${
+            active === 'Explore NFTs'
+              ? 'dark:text-white text-nft-black-1'
               : 'dark:text-nft-gray-3 text-nft-gray-2'
-            }
-          `}
+          }`}
         >
-          <Link href={generateLink(i)}>{item}</Link>
+          <Link href="/">Explore NFTs</Link>
+        </div>
+      </li>
+      {isConnected && (
+        <li
+          onMouseEnter={() => setDropdownOpen(true)}
+          className="relative"
+          style={{ padding: '0.75rem 0.5rem' }}
+        >
+          <div
+            onClick={toggleDropdown}
+            className={`flex flex-row items-center font-semibold text-base dark:hover:text-nft-gray-1 hover:text-nft-black-3 mx-3 ${
+              active === 'Profile'
+                ? 'dark:text-white text-nft-black-3'
+                : 'dark:text-white text-nft-black-3'
+            }`}
+          >
+            <div className="flex items-center">
+              <Link href="/profile" className='mr-1'>Profile</Link>
+              {dropdownOpen ? (
+                <i className="fas fa-regular fa-angle-up" />
+              ) : (
+                <i className="fas fa-regular fa-angle-down" />
+              )}
+            </div>
+          </div>
+          {dropdownOpen && (
+            <div ref={dropdownRef} className="absolute top-full left-0 mt-1 py-2 bg-white dark:bg-nft-dark rounded-md shadow-lg z-10">
+              <div className="w-48 flex justify-center">
+                <Link
+                  href="/my-nfts"
+                  className="block text-center w-full py-1 text-nft-gray-2 hover:text-nft-black-1 dark:hover:text-nft-gray-1 dark:text-white"
+                >
+                  My NFTs
+                </Link>
+              </div>
+              <div className="w-48 flex justify-center mt-2">
+                <Link
+                  href="/create-nfts"
+                  className="block text-center w-full py-1 text-nft-gray-2 hover:text-nft-black-1 dark:hover:text-nft-gray-1 dark:text-white"
+                >
+                  Create NFTs
+                </Link>
+              </div>
+            </div>
+          )}
         </li>
-      ))}
+      )}
     </ul>
-  )
-}
+  );
+};
 
 const Navbar = () => {
   const [active, setActive] = useState('Explore NFTs');
@@ -59,21 +120,22 @@ const Navbar = () => {
   return (
     <nav className='flexBetween w-full fixed z-10 p-4 flex-row border-b dark:bg-nft-dark bg-white dark:border-nft-black-1 border-nft-gray-1'>
       <div className='flex flex-1 flex-row justify-start'>
-        <Link href="/">
-          <div className='flexCenter md:hidden cursor-pointer' onClick={() => {}}>
-            <Image src={images.logo02} objectFit="contain" width={32} height={32} alt="logo" />
-            <p className='dark:text-white text-nft-black-1 font-semibold text-lg ml-1'>Marketplace</p>
-
-          </div>
-        </Link>
-        <Link href="/">
-          <div className='hidden md:flex' onClick={() => {}}>
-            <Image src={images.logo02} objectFit="contain" width={32} height={32} alt="logo" />
-          </div>
-        </Link>
-      </div>
-      <div className='flex flex-initial flex-row justify-end'>
-        <div className='flex items-center mr-2'>
+        <div className='flex items-center pr-5'>
+          <Link href="/">
+            <div className='flexCenter md:hidden cursor-pointer' onClick={() => {}}>
+              <Image src={images.logo02} objectFit="contain" width={32} height={32} alt="logo" />
+              <p className='dark:text-white text-nft-black-1 font-semibold text-lg ml-1'>
+                Marketplace
+              </p>
+            </div>
+          </Link>
+          <Link href="/">
+            <div className='hidden md:flex' onClick={() => {}}>
+              <Image src={images.logo02} objectFit="contain" width={32} height={32} alt="logo" />
+            </div>
+          </Link>
+        </div>
+        <div className='flex items-center'>
           <input
             type="checkbox"
             className='checkbox'
@@ -89,7 +151,8 @@ const Navbar = () => {
             <div className='w-3 h-3 absolute bg-white rounded-full ball'/>
           </label>
         </div>
-
+      </div>
+      <div className='flex flex-initial flex-row justify-end'>
         <div className='md:hidden flex'>
           <MenuItems active={active} setActive={setActive} isMobile={false} />
           <div className='ml-4'>

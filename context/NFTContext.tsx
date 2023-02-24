@@ -27,7 +27,7 @@ export const NFTProvider = ({ children }: any) => {
  // const { data } = useSession();
  const { requestChallengeAsync } = useAuthRequestChallengeEvm();
 
- const nftCurrency = "MATIC";
+ const nftCurrency = "ETH";
  const handleAuth = async () => {
   if (isConnected) {
     await disconnectAsync();
