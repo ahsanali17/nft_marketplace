@@ -1,10 +1,8 @@
 'use client';
-import { useEffect } from 'react';
-import { useNetwork } from 'wagmi';
+import { useNetwork, useTransaction } from 'wagmi';
 
 import { getEllipsisTxt } from 'utils/format';
 import Button from '../Button/Button';
-import { getPriceInUSDAtTimeOfTransfer } from '@/pages/api/crypto-compare/getPriceInUSDAtTransfer';
 
 interface TransactionData {
  from: {
@@ -71,7 +69,7 @@ interface TransactionData {
 const TransactionCard = ({ transaction }: any) => {
  const txArray = Object.entries(transaction);
  const [txData] = txArray;
- const { chain: currentNetworksChainId } = useNetwork();
+
  const [
    _data,
    {
@@ -110,14 +108,6 @@ const TransactionCard = ({ transaction }: any) => {
   const handleExplorerLink = () => {
     window.open(`${explorerUrl}/tx/${hash}`, '_blank');
   }
-
-  const currency = 'USD'
-
-  useEffect(() => {
-   getPriceInUSDAtTimeOfTransfer({blockTimestamp, currencySymbol, currency})
-   console.log(txData);
-   // console.log(currencySymbol, "***")
-  }, [blockTimestamp])
 
   return (
    <div
@@ -162,18 +152,22 @@ const TransactionCard = ({ transaction }: any) => {
        {new Date(blockTimestamp).toLocaleDateString()}
       </p>
      </div>
-    </div>
-    <div className='flex flex-row justify-between mt-4 p-1'>
-     <div>
-      <Button btnName='More' classStyles='rounded-2xl' handleClick={() => {}} />
+     <div className="flex items-center justify-between">
+      <p className="text-nft-black-3 font-semibold text-sm">
+       Value:
+      </p>
+      <p className="text-nft-black-1 font-semibold text-sm">
+       {valueRawValue.toString()}
+      </p>
      </div>
+    </div>
+    <div className='flex flex-row justify-center mt-4 p-1'>
      <div>
       <Button
        btnName='Link'
        classStyles='rounded-2xl'
        handleClick={handleExplorerLink}
       />
-
      </div>
     </div>
    </div>

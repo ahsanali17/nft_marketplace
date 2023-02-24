@@ -94,18 +94,26 @@ const MenuItems = ({ isMobile, active, setActive }: menuItemsProps) => {
               </div>
               <div className="w-48 flex justify-center mt-2">
                 <Link
-                  href="/create-nfts"
-                  className="block text-center w-full py-1 text-nft-gray-2 hover:text-nft-black-1 dark:hover:text-nft-gray-1 dark:text-white"
-                >
-                  Create NFTs
-                </Link>
-              </div>
-              <div className="w-48 flex justify-center mt-2">
-                <Link
                   href="/my-transactions"
                   className="block text-center w-full py-1 text-nft-gray-2 hover:text-nft-black-1 dark:hover:text-nft-gray-1 dark:text-white"
                 >
                   My Transactions
+                </Link>
+              </div>
+              <div className="w-48 flex justify-center mt-2">
+                <Link
+                  href="/my-tokens"
+                  className="block text-center w-full py-1 text-nft-gray-2 hover:text-nft-black-1 dark:hover:text-nft-gray-1 dark:text-white"
+                >
+                  My Tokens
+                </Link>
+              </div>
+              <div className="w-48 flex justify-center mt-2">
+                <Link
+                  href="/create-nfts"
+                  className="block text-center w-full py-1 text-nft-gray-2 hover:text-nft-black-1 dark:hover:text-nft-gray-1 dark:text-white"
+                >
+                  Create NFTs
                 </Link>
               </div>
             </div>
