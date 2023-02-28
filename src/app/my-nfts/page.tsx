@@ -2,7 +2,7 @@
 import { Fragment } from 'react';
 import { useEvmWalletNFTs } from '@moralisweb3/next';
 import { useAccount, useNetwork } from 'wagmi';
-
+import EvmNft from  "/home/ahsan786/jsm-bootcamp/nft-marketplace/Frontend/node_modules/@moralisweb3/common-evm-utils/lib/dataTypes/EvmNft/EvmNft"
 import MyNFTCard from '../../components/MyNFTCard/MyNFTCard';
 
 const MyNFTs = () => {
@@ -10,13 +10,15 @@ const MyNFTs = () => {
   const { chain } = useNetwork();
 
   const { data: nftWalletNFT } = useEvmWalletNFTs({
-   address: address,
+   address: address ?? '',
    chain: chain?.id,
    format: 'decimal',
 
  });
 
- const sortedCollections = nftWalletNFT?.sort((a, b) => a.name.localeCompare(b.name))
+ const sortedCollections = nftWalletNFT?.sort((a, b) => (a?.name ?? '').localeCompare(b?.name ?? '') );
+
+ console.log(sortedCollections, "sorted");
 
   return (
   <div className="flex justify-center sm:px-4 p-12" style={{ padding: '6rem 2rem'}}>
