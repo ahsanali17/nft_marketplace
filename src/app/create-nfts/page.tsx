@@ -69,7 +69,7 @@ const CreatedNFTS = () => {
                       width={50}
                       height={50}
                       objectFit='contain'
-                      className={theme === 'light' && 'filter invert'}
+                      className={theme === 'light' ? 'filter invert' : undefined}
                     />
                   </div>
 
