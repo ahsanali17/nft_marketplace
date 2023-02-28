@@ -25,7 +25,7 @@ const CreatedNFTS = () => {
 
   const { getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject } = useDropzone({
     onDrop,
-    accept: 'img/*',
+    accept: {accept: ['img', 'png', 'jpeg']},
     maxSize: 5000000,
   })
 
