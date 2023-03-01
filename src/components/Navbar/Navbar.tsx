@@ -8,7 +8,7 @@ import images from '../../assets'
 import { ConnectToWallet, NetworkSwitcher } from '..';
 import { useAccount } from 'wagmi';
 
-type menuItemsProps = {
+interface menuItemsProps {
   isMobile: boolean,
   active: string,
   setActive: Dispatch<SetStateAction<string>>,

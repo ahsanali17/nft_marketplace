@@ -1,4 +1,4 @@
-type ButtonProps = {
+interface ButtonProps {
   classStyles: string
   btnName: string,
   handleClick: VoidFunction

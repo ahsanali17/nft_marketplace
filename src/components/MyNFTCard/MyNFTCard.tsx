@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 import images from '../../assets';
 
-// type nftCardProps = {
+// interface nftCardProps {
 //   nft: {
 //     contractType: string,
 //     tokenAddress: {

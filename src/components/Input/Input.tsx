@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 
 import { NFTContext } from 'context/NFTContext';
 
-type inputProps = {
+interface inputProps {
   inputType: string,
   title: string,
   placeholder: string,

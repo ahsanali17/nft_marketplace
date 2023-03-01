@@ -2,7 +2,7 @@
 import {useEffect} from 'react';
 import axios from 'axios';
 
-type historicalPriceProp = {
+interface historicalPriceProp {
  blockTimestamp: any,
  currencySymbol: string,
  currency: string,

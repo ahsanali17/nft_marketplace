@@ -5,9 +5,9 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
+    'plugin:prettier/recommended',
     'standard-with-typescript',
-    'next/core-web-vitals'
-
+    'next/core-web-vitals',
   ],
   overrides: [
   ],
@@ -17,10 +17,22 @@ module.exports = {
     sourceType: 'module'
   },
   plugins: [
-    'react'
+    'react',
+    'prettier'
   ],
   rules: {
-    'semi': ['error', 'always'],
+    'prettier/prettier': [
+      'error',
+      {
+        semi: false,
+        singleQuote: true,
+        trailingComma: 'none',
+        arrowParens: 'avoid',
+        printWidth: 80,
+        tabWidth: 2,
+      }
+    ],
+    'semi': false,
     'no-console': 0,
     'jsx-a11y/label-has-associated-control': 0,
     'no-nested-ternary': 0,

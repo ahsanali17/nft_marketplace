@@ -4,7 +4,7 @@ import Image from 'next/image'
 import images from '../../assets';
 import { NFTContext } from 'context/NFTContext';
 
-type creatorCardProps = {
+interface creatorCardProps {
  rank: number,
  creatorImage: any,
  creatorName: string,

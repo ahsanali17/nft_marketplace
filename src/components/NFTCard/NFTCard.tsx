@@ -5,7 +5,7 @@ import Link from 'next/link'
 import images from '../../assets';
 import { NFTContext } from 'context/NFTContext';
 
-type nftCardProps = {
+interface nftCardProps {
  nft: {
   i: number,
   name: string,

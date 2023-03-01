@@ -12,7 +12,7 @@ import { useAuthRequestChallengeEvm,  } from '@moralisweb3/next';
 // import { handleAuth, handleDisconnect } from '../src/app/walletConnect';
 import { uploadToIPFS, uploadToIPFSProps } from '@/pages/api/ipfs/ipfs';
 
-type ContextObjectValue = {
+interface ContextObjectValue {
  nftCurrency: string;
  handleAuth:  () => Promise<void>,
  handleDisconnect:  () => Promise<void>,

@@ -1,6 +1,6 @@
 import React from 'react';
 
-type bannerProps = {
+interface bannerProps {
   bannerText: string;
   parentStyles: string;
   childStyles: string;
