@@ -2,7 +2,7 @@
 import { Fragment } from 'react';
 import { useEvmWalletNFTs } from '@moralisweb3/next';
 import { useAccount, useNetwork } from 'wagmi';
-import EvmNft from  "/home/ahsan786/jsm-bootcamp/nft-marketplace/Frontend/node_modules/@moralisweb3/common-evm-utils/lib/dataTypes/EvmNft/EvmNft"
+
 import MyNFTCard from '../../components/MyNFTCard/MyNFTCard';
 
 const MyNFTs = () => {

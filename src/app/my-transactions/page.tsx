@@ -10,12 +10,12 @@ const MyTransactions = () => {
   const { chain } = useNetwork();
 
   const { data: transactions } = useEvmWalletTransactions({
-    address: address,
+    address: address ?? '',
     chain: chain?.id,
   });
 
   const { data: nativeBalance } = useEvmNativeBalance({
-   address: address,
+   address: address ?? '',
    chain: chain?.id,
  });
 
