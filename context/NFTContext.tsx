@@ -16,7 +16,7 @@ interface ContextObjectValue {
  nftCurrency: string;
  handleAuth:  () => Promise<void>,
  handleDisconnect:  () => Promise<void>,
- uploadToIPFS: ({ file, setFileUrl }: uploadToIPFSProps) => Promise<string | undefined>,
+ uploadToIPFS: ({ file, setFileUrl }: UploadToIPFSProps) => Promise<string | undefined>,
 }
 
 export const NFTContext = createContext<ContextObjectValue>({} as ContextObjectValue);

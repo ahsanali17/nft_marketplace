@@ -1,32 +1,32 @@
-'use client';
-import { useState, useMemo, useCallback, useContext } from 'react';
+'use client'
+import { useState, useMemo, useCallback, useContext } from 'react'
 
-import { useDropzone } from 'react-dropzone';
-import Image from 'next/image';
-import { useTheme } from 'next-themes';
+import { useDropzone } from 'react-dropzone'
+import Image from 'next/image'
+import { useTheme } from 'next-themes'
 
-import { Button, Input } from '@/components';
-import images from '../../assets';
-import { NFTContext } from 'context/NFTContext';
+import { Button, Input } from '@/components'
+import images from '../../assets'
+import { NFTContext } from 'context/NFTContext'
 
 const CreatedNFTS = () => {
   const [fileUrl, setFileUrl] = useState<string | undefined | null>(null);
-  const [formInput, setFormInput] = useState({ price: '', name: '', description: '' });
-  const { theme } = useTheme();
-  const { uploadToIPFS } = useContext(NFTContext);
+  const [formInput, setFormInput] = useState({ price: '', name: '', description: '' })
+  const { theme } = useTheme()
+  const { uploadToIPFS } = useContext(NFTContext)
 
   const onDrop = useCallback(async (acceptedFiles: File[]) => {
     // upload to ipfs
-    const url = await uploadToIPFS({ file: acceptedFiles[0], setFileUrl });
+    const url = await uploadToIPFS({ file: acceptedFiles[0], setFileUrl })
     // console.log(url);
-    setFileUrl(url);
-  }, [uploadToIPFS]);
+    setFileUrl(url)
+  }, [uploadToIPFS])
 
   const { getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject } = useDropzone({
     onDrop,
     accept: {accept: ['img', 'png', 'jpeg']},
     maxSize: 5000000,
-  });
+  })
 
   const fileStyle = useMemo(
     () => (
@@ -36,9 +36,9 @@ const CreatedNFTS = () => {
        ${isDragReject ? ' border-file-reject ' : ''}
       `),
     [isDragActive, isDragReject, isDragAccept],
-  );
+  )
 
-  console.log(formInput);
+  console.log(formInput)
 
   return (
     <div className='flex justify-center'>
