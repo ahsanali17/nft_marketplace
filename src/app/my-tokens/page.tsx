@@ -10,12 +10,12 @@ const MyTokens = () => {
   const { chain } = useNetwork();
 
   const { data: tokens } = useEvmWalletTokenBalances({
-    address: address,
+    address: address ?? '',
     chain: chain?.id,
   });
 
   const { data: nativeBalance } = useEvmNativeBalance({
-    address: address,
+    address: address ?? '',
     chain: chain?.id,
   });
 
