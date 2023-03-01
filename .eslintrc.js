@@ -5,14 +5,18 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
     // 'plugin:prettier/recommended',
     'standard-with-typescript',
     'next/core-web-vitals',
   ],
   overrides: [
   ],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: './tsconfig.json',
+    project: true,
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
@@ -20,6 +24,7 @@ module.exports = {
     'react',
     // 'prettier'
   ],
+  root: true,
   rules: {
     // 'prettier/prettier': [
     //   'error',
