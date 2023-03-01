@@ -53,6 +53,7 @@ const Footer = () => {
               <Button
                 btnName='Email me'
                 classStyles='rounded-md'
+                handleClick={() => {}}
               />
             </div>
           </div>

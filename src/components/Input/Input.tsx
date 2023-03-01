@@ -6,7 +6,7 @@ type inputProps = {
   inputType: string,
   title: string,
   placeholder: string,
-  handleClick: (e: React.ChangeEvent<HTMLInputElement>) => void
+  handleClick: (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => void
 }
 
 const Input = ({ inputType, title, placeholder, handleClick }: inputProps) => {

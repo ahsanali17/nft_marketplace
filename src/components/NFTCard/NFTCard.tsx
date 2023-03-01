@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import Link from 'next/link'
 
 import images from '../../assets';
@@ -12,7 +12,8 @@ type nftCardProps = {
   price: string,
   seller: string,
   owner: string,
-  description: string
+  description: string,
+  image?: StaticImageData | '' | undefined,
  },
 }
 
@@ -20,7 +21,7 @@ const NFTCard = ({ nft }: nftCardProps) => {
   const { nftCurrency } = useContext(NFTContext);
 
   return (
-    <Link href={{pathname: '/nft-details',  query: nft }}>
+      <Link href={{ pathname: '/nft-details', query: { i: nft.i, name: nft.name, price: nft.price, seller: nft.seller, owner: nft.owner, description: nft.description } }}>
      <div className='flex-1 min-w-215 max-w-max xs:max-w-none sm:w-full sm:min-w-155 minmd:min-w-256 minlg:min-w-327 dark:bg-nft-black-3 bg-white rounded-2xl p-4 m-4 minlg:m-8 sm:my-2 sm:mx-2 cursor-pointer shadow-md'>
       <div className='relative w-full h-52 sm:h-36 xs:h-56 mind:h-60 minlg:h-300 rounded-2xl overflow-hidden'>
        <Image

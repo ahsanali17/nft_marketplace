@@ -1,3 +1,5 @@
+import { StaticImageData } from 'next/image';
+
 import heartOutline from './heart-outline.png';
 import heart from './heart.png';
 import logo from './logo.png';
@@ -38,7 +40,11 @@ import headerbg from './headerbg.png';
 import loader from './loader.gif';
 import arrow from './arrow.png';
 
-export default {
+interface Images {
+  [key: string]: StaticImageData;
+}
+
+export const images: Images = {
   heartOutline,
   heart,
   logo,
@@ -79,3 +85,5 @@ export default {
   loader,
   arrow,
 };
+
+export default images;

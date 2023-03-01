@@ -10,8 +10,10 @@ const NetworkSwitcher = () => {
 
   const handleToggle = (event: any) => {
     const chainId = isMainnet ? 5 : 1;
-    switchNetwork(chainId);
-  };
+      if(switchNetwork) {
+        switchNetwork(chainId);
+      }
+    }
 
   return (
     <div className="flex flex-col items-center">

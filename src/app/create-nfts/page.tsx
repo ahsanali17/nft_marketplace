@@ -13,14 +13,13 @@ const CreatedNFTS = () => {
   const [fileUrl, setFileUrl] = useState<string | undefined | null>(null);
   const [formInput, setFormInput] = useState({price: '', name: '', description: ''})
   const{ theme } = useTheme();
-  // const {uploadToIPFS} = useContext(NFTContext)
+  const {uploadToIPFS} = useContext(NFTContext)
 
   const onDrop = useCallback(async (acceptedFiles: File[]) => {
     // upload to ipfs
-    // const url = await uploadToIPFS({file: acceptedFiles[0]});
-
+    const url = await uploadToIPFS({file: acceptedFiles[0], setFileUrl});
     // console.log(url);
-    // setFileUrl(url);
+    setFileUrl(url);
   }, []);
 
   const { getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject } = useDropzone({
