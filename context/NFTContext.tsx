@@ -10,7 +10,7 @@ import { useAuthRequestChallengeEvm,  } from '@moralisweb3/next';
 
 // import { MarketAddress, MarketAddressABI } from './constants';
 // import { handleAuth, handleDisconnect } from '../src/app/walletConnect';
-import { uploadToIPFS, uploadToIPFSProps } from '@/pages/api/ipfs/ipfs';
+import { uploadToIPFS, UploadToIPFSProps } from '@/pages/api/ipfs/ipfs';
 
 interface ContextObjectValue {
  nftCurrency: string;

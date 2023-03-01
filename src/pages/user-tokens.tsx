@@ -4,4 +4,4 @@ const UserTokens = (): JSX.Element => {
   )
 }
 
-export default UserTokens;
+export default UserTokens

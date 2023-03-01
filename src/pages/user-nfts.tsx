@@ -4,4 +4,4 @@ const UserNFTs = (): JSX.Element => {
   )
 }
 
-export default UserNFTs;
+export default UserNFTs

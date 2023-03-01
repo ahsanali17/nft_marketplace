@@ -1,7 +1,7 @@
-const ResellNFT = (): JSX.Element  => {
+const ResellNFT = (): JSX.Element => {
   return (
     <div>ResellNFT</div>
   )
 }
 
-export default ResellNFT;
+export default ResellNFT

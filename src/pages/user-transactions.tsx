@@ -4,4 +4,4 @@ const UserTransactions = (): JSX.Element => {
   )
 }
 
-export default UserTransactions;
+export default UserTransactions

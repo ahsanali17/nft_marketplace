@@ -4,4 +4,5 @@ const CreateNFT = (): JSX.Element => {
   )
 }
 
-export default CreateNFT;
+export default CreateNFT
+
