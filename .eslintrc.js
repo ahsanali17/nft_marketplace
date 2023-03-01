@@ -32,7 +32,7 @@ module.exports = {
         tabWidth: 2,
       }
     ],
-    'semi': false,
+    'semi': 0,
     'no-console': 0,
     'jsx-a11y/label-has-associated-control': 0,
     'no-nested-ternary': 0,
