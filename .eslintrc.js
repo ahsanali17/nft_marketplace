@@ -5,7 +5,9 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
-    'standard-with-typescript'
+    'standard-with-typescript',
+    'next/core-web-vitals'
+
   ],
   overrides: [
   ],
@@ -18,6 +20,7 @@ module.exports = {
     'react'
   ],
   rules: {
+    'semi': ['error', 'always'],
     'no-console': 0,
     'jsx-a11y/label-has-associated-control': 0,
     'no-nested-ternary': 0,
