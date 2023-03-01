@@ -1,5 +1,5 @@
 'use client';
-import React, { createContext, useContext } from 'react';
+import { createContext, useContext } from 'react';
 // import Web3Modal from 'web3modal';
 // import { ethers } from 'ethers';
 // import axios from 'axios';

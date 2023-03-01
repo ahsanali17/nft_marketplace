@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import Image, { StaticImageData } from 'next/image';
 import Link from 'next/link'
 

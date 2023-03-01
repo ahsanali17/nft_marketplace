@@ -5,7 +5,7 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
-    'plugin:prettier/recommended',
+    // 'plugin:prettier/recommended',
     'standard-with-typescript',
     'next/core-web-vitals',
   ],
@@ -18,20 +18,20 @@ module.exports = {
   },
   plugins: [
     'react',
-    'prettier'
+    // 'prettier'
   ],
   rules: {
-    'prettier/prettier': [
-      'error',
-      {
-        semi: false,
-        singleQuote: true,
-        trailingComma: 'none',
-        arrowParens: 'avoid',
-        printWidth: 80,
-        tabWidth: 2,
-      }
-    ],
+    // 'prettier/prettier': [
+    //   'error',
+    //   {
+    //     semi: false,
+    //     singleQuote: true,
+    //     trailingComma: 'none',
+    //     arrowParens: 'avoid',
+    //     printWidth: 80,
+    //     tabWidth: 2,
+    //   }
+    // ],
     'semi': 0,
     'no-console': 0,
     'jsx-a11y/label-has-associated-control': 0,
