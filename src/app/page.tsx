@@ -10,8 +10,8 @@ import { makeId } from 'utils/makeId';
 const Home = () => {
   const [hideButtons, setHideButtons] = useState(false)
   const { theme, setTheme } = useTheme();
-  const parentRef = useRef(null);
-  const scrollRef = useRef(null);
+  const parentRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const handleScroll = (direction: string) => {
     const { current } = scrollRef;
@@ -33,11 +33,13 @@ const Home = () => {
     const { current } = scrollRef;
     const { current: parent } = parentRef;
 
-    if(current?.scrollWidth >= parent?.offsetWidth) {
-      setHideButtons(false)
+
+    if (current && parent && current.scrollWidth >= parent.offsetWidth) {
+      setHideButtons(false);
     } else {
       setHideButtons(true);
     }
+
   }
   useEffect(() => {
     isScrollable()
