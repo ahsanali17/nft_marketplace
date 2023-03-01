@@ -24,7 +24,7 @@ const TokenCard = ({ value, decimals, name, symbol, contractAddress, chain }: To
       Chain:
      </p>
      <p className="text-nft-black-1 font-semibold text-sm">
-       {chain}
+       {chain?.toString()}
      </p>
     </div>
     <div className="flex items-center justify-between">
@@ -40,7 +40,7 @@ const TokenCard = ({ value, decimals, name, symbol, contractAddress, chain }: To
       Decimals:
      </p>
      <p className="text-nft-black-1 font-semibold text-sm">
-      {decimals}
+      {decimals?.toString()}
      </p>
     </div>
     <div className="flex items-center justify-between">
@@ -48,7 +48,7 @@ const TokenCard = ({ value, decimals, name, symbol, contractAddress, chain }: To
       Name:
      </p>
      <p className="text-nft-black-1 font-semibold text-sm">
-      {name}
+      {name?.toString()}
      </p>
     </div>
     <div className="flex items-center justify-between">
@@ -56,7 +56,7 @@ const TokenCard = ({ value, decimals, name, symbol, contractAddress, chain }: To
      Symbol:
      </p>
      <p className="text-nft-black-1 font-semibold text-sm">
-      {symbol}
+      {symbol?.toString()}
      </p>
     </div>
     <div className="flex items-center justify-between">
@@ -64,7 +64,7 @@ const TokenCard = ({ value, decimals, name, symbol, contractAddress, chain }: To
       Value:
      </p>
      <p className="text-nft-black-1 font-semibold text-sm">
-      {value}
+      {value?.toString()}
      </p>
     </div>
    </div>
