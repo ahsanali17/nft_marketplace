@@ -1,6 +1,4 @@
-import React from 'react'
-
-const UserTokens = () => {
+const UserTokens = (): JSX.Element => {
   return (
     <div>UserTokens</div>
   )

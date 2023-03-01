@@ -4,9 +4,9 @@ interface bannerProps {
   bannerText: string;
   parentStyles: string;
   childStyles: string;
-};
+}
 
-const Banner = ({ bannerText, parentStyles, childStyles }: bannerProps) => {
+const Banner = ({ bannerText, parentStyles, childStyles }: bannerProps): JSX.Element => {
   return (
     <div className={`relative flex items-center z-0 overflow-hidden nft-gradient ${parentStyles} border-t rounded-3xl justify-center items-center`}>
       <p className={`font-bold text-5xl font-poppins leading-70 ${childStyles}`}>

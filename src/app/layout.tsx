@@ -5,8 +5,8 @@ import { Navbar, Footer } from '../components';
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
-}) {
+  children: React.ReactNode;
+}): JSX.Element {
   return (
     <html lang="en">
       {/*
@@ -14,15 +14,13 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-        <body>
-          <Providers>
-            <Navbar />
-            <div className='pt-65'>
-              {children}
-            </div>
-            <Footer />
-          </Providers>
-        </body>
+      <body>
+        <Providers>
+          <Navbar />
+          <div className="pt-65">{children}</div>
+          <Footer />
+        </Providers>
+      </body>
     </html>
-  )
+  );
 }

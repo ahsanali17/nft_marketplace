@@ -6,7 +6,7 @@ import Button from '../Button/Button';
 import { getEllipsisTxt } from '../../../utils/format';
 import { NFTContext } from '../../../context/NFTContext';
 
-const ConnectToWallet = () => {
+const ConnectToWallet = (): JSX.Element => {
   const { isConnected, address } = useAccount();
   const { handleAuth, handleDisconnect } = useContext(NFTContext);
 
@@ -15,7 +15,13 @@ const ConnectToWallet = () => {
       <Button
         btnName={isConnected ? getEllipsisTxt(address) : 'Connect Wallet'}
         classStyles="flex items-center cursor-pointer mx-2 rounded-xl"
-        handleClick={isConnected ? handleDisconnect : handleAuth}
+        handleClick={async () => {
+          if (isConnected) {
+            handleDisconnect();
+          } else {
+            await handleAuth();
+          }
+        }}
       />
     </div>
   );

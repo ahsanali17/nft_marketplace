@@ -1,5 +1,5 @@
-import NextAuth from "next-auth";
-import { MoralisNextAuthProvider } from "@moralisweb3/next";
+import NextAuth from 'next-auth';
+import { MoralisNextAuthProvider } from '@moralisweb3/next';
 
 export default NextAuth({
   providers: [MoralisNextAuthProvider()],
@@ -12,7 +12,9 @@ export default NextAuth({
       return token;
     },
     async session({ session, token }) {
-      (session as { user: unknown }).user = token.user;
+      if (token && token.user) {
+        (session as { user: unknown }).user = token.user;
+      }
       return session;
     },
   },

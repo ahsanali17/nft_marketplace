@@ -2,18 +2,18 @@
 import React from 'react';
 import { useNetwork, useSwitchNetwork } from 'wagmi';
 
-const NetworkSwitcher = () => {
+const NetworkSwitcher = (): JSX.Element => {
   const { chain } = useNetwork();
   const { switchNetwork } = useSwitchNetwork();
 
   const isMainnet = chain?.id === 1;
 
-  const handleToggle = (event: any) => {
+  const handleToggle = (event: any): void => {
     const chainId = isMainnet ? 5 : 1;
-      if(switchNetwork) {
-        switchNetwork(chainId);
-      }
+    if (switchNetwork) {
+      switchNetwork(chainId);
     }
+  };
 
   return (
     <div className="flex flex-col items-center">
@@ -30,19 +30,16 @@ const NetworkSwitcher = () => {
       >
         {isMainnet ? (
           <span className="text-lg font-bold text-gray-800">
-           M
+            M
           </span>
         ) : (
           <span className="text-lg font-bold text-gray-800">
-           G
+            G
           </span>
         )}
       </label>
-      <div
-       style={{fontSize: '0.69rem'}}
-       className="text-gray-400"
-      >
-       {isMainnet ? 'Mainnet' : 'Testnet'}
+      <div style={{ fontSize: '0.69rem' }} className="text-gray-400">
+        {isMainnet ? 'Mainnet' : 'Testnet'}
       </div>
     </div>
   );

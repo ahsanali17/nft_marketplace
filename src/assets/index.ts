@@ -83,7 +83,7 @@ export const images: Images = {
   left,
   headerbg,
   loader,
-  arrow,
+  arrow
 };
 
 export default images;

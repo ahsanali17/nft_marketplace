@@ -1,6 +1,4 @@
-import React from 'react'
-
-const UserNFTs = () => {
+const UserNFTs = (): JSX.Element => {
   return (
     <div>UserNFTs</div>
   )
