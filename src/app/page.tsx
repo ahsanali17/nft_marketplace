@@ -5,7 +5,7 @@ import { useTheme } from 'next-themes';
 
 import { Banner, CreatorCard, NFTCard } from '../components';
 import images from '../assets';
-import { makeId } from '../utils/makeId';
+import { makeId } from '../../utils/makeId';
 
 const Home = () => {
   const [hideButtons, setHideButtons] = useState(false);
