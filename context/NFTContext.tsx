@@ -1,5 +1,5 @@
 'use client';
-import React, { createContext, useContext } from 'react';
+import { createContext, useContext } from 'react';
 // import Web3Modal from 'web3modal';
 // import { ethers } from 'ethers';
 // import axios from 'axios';
@@ -10,13 +10,13 @@ import { useAuthRequestChallengeEvm,  } from '@moralisweb3/next';
 
 // import { MarketAddress, MarketAddressABI } from './constants';
 // import { handleAuth, handleDisconnect } from '../src/app/walletConnect';
-// import { uploadToIPFS, uploadToIPFSProps } from '@/pages/api/ipfs/ipfs';
+import { uploadToIPFS, UploadToIPFSProps } from '@/pages/api/ipfs/ipfs';
 
-type ContextObjectValue = {
+interface ContextObjectValue {
  nftCurrency: string;
  handleAuth:  () => Promise<void>,
  handleDisconnect:  () => Promise<void>,
-//  uploadToIPFS: ({ file, setFileUrl }: uploadToIPFSProps) => Promise<string | undefined>,
+ uploadToIPFS: ({ file, setFileUrl }: UploadToIPFSProps) => Promise<string | undefined>,
 }
 
 export const NFTContext = createContext<ContextObjectValue>({} as ContextObjectValue);
@@ -45,7 +45,7 @@ export const NFTProvider = ({ children }: any) => {
     const signature = await signMessageAsync({ message: challenge.message });
 
     await signIn('moralis-auth', { message: challenge.message, signature, network: 'Evm', redirect: false });
-    window.location.reload();
+    // window.location.reload();
   } catch (e: any) {
     console.error(`Error signing in: ${e.message}`);
   }
@@ -60,7 +60,7 @@ export const NFTProvider = ({ children }: any) => {
   nftCurrency,
   handleAuth,
   handleDisconnect,
-  // uploadToIPFS
+  uploadToIPFS
  }
 
  return (

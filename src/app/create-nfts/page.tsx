@@ -1,27 +1,28 @@
-'use client';
-import {useState, useMemo, useCallback, useContext } from 'react';
+'use client'
+import { useState, useMemo, useCallback, useContext} from 'react'
+import type { SetStateAction, Dispatch } from 'react'
 
-import { useDropzone } from 'react-dropzone';
+import { useDropzone } from 'react-dropzone'
 import Image from 'next/image'
-import { useTheme } from 'next-themes';
+import { useTheme } from 'next-themes'
 
-import { Button, Input } from '@/components';
-import images from '../../assets';
-import { NFTContext } from 'context/NFTContext';
+import { Button, Input } from '@/components'
+import images from '../../assets'
+import { NFTContext } from 'context/NFTContext'
 
-const CreatedNFTS = () => {
-  const [fileUrl, setFileUrl] = useState<string | undefined | null>(null);
-  const [formInput, setFormInput] = useState({price: '', name: '', description: ''})
-  const{ theme } = useTheme();
-  // const {uploadToIPFS} = useContext(NFTContext)
+const CreatedNFTS = (): JSX.Element => {
+  const [fileUrl, setFileUrl] = useState<string | undefined>();
+  const [formInput, setFormInput] = useState<{}>({ price: '', name: '', description: '' })
+  const { theme } = useTheme()
+  const { uploadToIPFS } = useContext(NFTContext)
 
   const onDrop = useCallback(async (acceptedFiles: File[]) => {
     // upload to ipfs
-    // const url = await uploadToIPFS({file: acceptedFiles[0]});
+    // const url = await uploadToIPFS({ file: acceptedFiles[0], setFileUrl });
 
     // console.log(url);
-    // setFileUrl(url);
-  }, []);
+    // setFileUrl(url || undefined)
+  }, [uploadToIPFS])
 
   const { getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject } = useDropzone({
     onDrop,
@@ -37,9 +38,9 @@ const CreatedNFTS = () => {
        ${isDragReject ? ' border-file-reject ' : ''}
       `),
     [isDragActive, isDragReject, isDragAccept],
-  );
+  )
 
-  console.log(formInput);
+  console.log(formInput)
 
   return (
     <div className='flex justify-center'>
@@ -69,7 +70,7 @@ const CreatedNFTS = () => {
                       width={50}
                       height={50}
                       objectFit='contain'
-                      className={theme === 'light' && 'filter invert'}
+                      className={theme === 'light' ? 'filter invert' : undefined}
                     />
                   </div>
 
@@ -122,4 +123,4 @@ const CreatedNFTS = () => {
   )
 }
 
-export default CreatedNFTS;
+export default CreatedNFTS

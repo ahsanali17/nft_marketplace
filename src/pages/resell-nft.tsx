@@ -1,9 +1,7 @@
-import React from 'react'
-
-const ResellNFT = () => {
+const ResellNFT = (): JSX.Element => {
   return (
     <div>ResellNFT</div>
   )
 }
 
-export default ResellNFT;
+export default ResellNFT

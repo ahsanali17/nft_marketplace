@@ -1,16 +1,16 @@
-'use client';
-import Image from 'next/image';
-import { useTheme } from 'next-themes';
+'use client'
+import Image from 'next/image'
+import { useTheme } from 'next-themes'
 
-import images from '../../assets';
-import { Button } from '..';
+import images from '../../assets'
+import { Button } from '..'
 
-type footerProps = {
-  heading: string,
+interface FooterLinksProps {
+  heading: string
   items: string[]
 }
 
-const FooterLinks = ({ heading, items }: footerProps) => (
+const FooterLinks = ({ heading, items }: FooterLinksProps): JSX.Element => (
   <div className='flex-1 justify-start items-start'>
     <h3 className='font-poppins dark:text-white text-nft-black-1 font-semibold text-xl mb-10'>
       {heading}
@@ -25,59 +25,47 @@ const FooterLinks = ({ heading, items }: footerProps) => (
   </div>
 )
 
-
-const Footer = () => {
-  const { theme } = useTheme();
+const Footer = (): JSX.Element => {
+  const { theme } = useTheme()
 
   return (
-    <footer
-      className='flexCenter flex-col border-t dark:border-nft-black-1 border-nft-gray-1 sm:py-8 py-16'
-    >
-
-      <div className='w-full minmd:w-4/5 flex flex-row md:flex-col sm:px-4 px-16'>
-        <div className='flexStart flex-1 flex-col'>
-          <div className='flexCenter cursor-pointer'>
-            <Image src={images.logo02} objectFit="contain" width={32} height={32} alt="logo" />
-            <p className='dark:text-white text-nft-black-1 font-semibold text-lg ml-1'>Marketplace</p>
+    <footer className='flexCenter flex-col border-t border-nft-gray-1 dark:border-nft-black-1 py-16 sm:py-8'>
+      <div className='w-full px-16 sm:px-4 flex flex-row md:flex-col minmd:w-4/5'>
+        <div className='flex-1 flex-col flexStart'>
+          <div className='cursor-pointer flexCenter'>
+            <Image src={images.logo02} alt='logo' width={32} height={32} objectFit='contain' />
+            <p className='ml-1 font-semibold text-lg dark:text-white text-nft-black-1'>Marketplace</p>
           </div>
-          <p className='font-poppins dark:text-white text-nft-black-1 font-semibold text-base mt-6'>
-            Get the latest updates
-          </p>
-          <div className='flexBetween md:w-full minlg:w-557 w-357 mt-6 dark:bg-nft-black-2 bg-white border dark:border-nft-black-2 border-nft-gray-2 rounded-md'>
+          <p className='mt-6 font-semibold text-base font-poppins dark:text-white text-nft-black-1'>Get the latest updates</p>
+          <div className='flexBetween w-357 mt-6 md:w-full minlg:w-557 bg-white border border-nft-gray-2 rounded-md dark:bg-nft-black-2 dark:border-nft-black-2'>
             <input
-              type="email"
+              type='email'
               placeholder='Your Email'
-              className='h-full flex-1 w-full dark:bg-nft-black-2 bg-white px-4 rounded-md dark:text-white text-nft-black-1 font-normal text-xs minlg:text-lg outline-none'
+              className='w-full h-full px-4 text-xs minlg:text-lg font-normal dark:text-white text-nft-black-1 bg-white dark:bg-nft-black-2 rounded-md outline-none'
             />
             <div className='flex-initial'>
-              <Button
-                btnName='Email me'
-                classStyles='rounded-md'
-              />
+              { <Button btnName='Email me' classStyles='rounded-md' handleClick={() => console.log('footer email me button pressed')} /> }
             </div>
           </div>
         </div>
-        <div className='flex-1 flexBetweenStart flex-wrap ml-10 md:ml-0 md:mt-8'>
-          <FooterLinks heading="Marketplace" items={['Explore', 'How it Works', 'Contact Us']} />
-          <FooterLinks heading="Support" items={['Help Center', 'Terms of Service', 'Legal', 'Privacy Policy']} />
+        <div className='ml-10 md:ml-0 md:mt-8 flex-1 flex-wrap flexBetweenStart'>
+          <FooterLinks heading='Marketplace' items={['Explore', 'How it Works', 'Contact Us']} />
+          <FooterLinks heading='Support' items={['Help Center', 'Terms of Service', 'Legal', 'Privacy Policy']} />
         </div>
       </div>
-
-      <div className='flexCenter w-full mt-5 border-t dark:border-nft-black-1 border-nft-gray-1 sm:px-4 px-16'>
-        <div className='flexBetween flex-row w-full minmd:w-4/5 sm:flex-col mt-7'>
-          <p className='font-poppins dark:text-white text-nft-black-1 font-semibold text-base mt-6'>
-            Marketplace, Inc. All Rights Reserved.
-          </p>
+      <div className='px-16 sm:px-4 flexCenter border-t border-nft-gray-1 dark:border-nft-black-1 mt-5'>
+        <div className='flex-row w-full minmd:w-4/5 sm:flex-col mt-7 flexBetween'>
+          <p className='mt-6 font-semibold text-base font-poppins dark:text-white text-nft-black-1'>Marketplace, Inc. All Rights Reserved.</p>
           <div className='flex flex-row sm:mt-4'>
             {[images.instagram, images.twitter, images.telegram, images.discord].map((image, i) => (
               <div className='mx-2 cursor-pointer' key={i}>
                 <Image
                   src={image}
-                  alt="social icons"
-                  objectFit='contain'
+                  alt='social icons'
                   width={24}
                   height={24}
-                  className={theme === 'light' && 'filter invert'}
+                  objectFit='contain'
+                  className={theme === 'light' ? 'filter invert' : undefined}
                 />
               </div>
             ))}

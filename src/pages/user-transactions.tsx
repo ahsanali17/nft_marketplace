@@ -1,9 +1,7 @@
-import React from 'react'
-
-const UserTransactions = () => {
+const UserTransactions = (): JSX.Element => {
   return (
     <div>UserTransactions</div>
   )
 }
 
-export default UserTransactions;
+export default UserTransactions

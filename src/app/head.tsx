@@ -1,4 +1,6 @@
-export default function Head() {
+import {FC} from 'react'
+
+const Head: FC = () => {
   return (
     <>
       <title>NFT Marketplace</title>
@@ -7,3 +9,5 @@ export default function Head() {
     </>
   )
 }
+
+export default Head
