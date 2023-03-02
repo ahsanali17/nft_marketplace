@@ -1,48 +1,49 @@
-'use client';
-import {useState, SetStateAction, Dispatch, useEffect, useRef } from 'react';
-import { useTheme } from 'next-themes';
-import Image from 'next/image';
-import Link from 'next/link';
+'use client'
+import {useState, useEffect, useRef } from 'react'
+import type { SetStateAction, Dispatch } from 'react'
+import { useTheme } from 'next-themes'
+import Image from 'next/image'
+import Link from 'next/link'
 
 import images from '../../assets'
-import { ConnectToWallet, NetworkSwitcher } from '..';
-import { useAccount } from 'wagmi';
+import { ConnectToWallet, NetworkSwitcher } from '..'
+import { useAccount } from 'wagmi'
 
 interface menuItemsProps {
   isMobile: boolean,
   active: string,
-  setActive: Dispatch<SetStateAction<string>>,
+  setActive: Dispatch<SetStateAction<string>>
 }
 
-const MenuItems = ({ isMobile, active, setActive }: menuItemsProps) => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const { isConnected } = useAccount();
+const MenuItems = ({ isMobile, active, setActive }: menuItemsProps): JSX.Element => {
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
+  const { isConnected } = useAccount()
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setDropdownOpen(false);
+    const handleClickOutside = (event: MouseEvent): void => {
+      if ((dropdownRef ?? null) && dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setDropdownOpen(false)
       }
-    };
+    }
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside)
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [dropdownRef]);
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [dropdownRef])
 
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
-  };
+  const toggleDropdown = (): void => {
+    setDropdownOpen(!dropdownOpen)
+  }
 
   return (
-    <ul className={`list-none flexCenter flex-row ${isMobile && 'flex-col h-full'}`}>
+    <ul className={`list-none flexCenter flex-row ${(isMobile ?? '') && 'flex-col h-full'}`}>
       <li className="relative">
         <div
           onClick={() => {
-            setActive('Explore NFTs');
+            setActive('Explore NFTs')
           }}
           className={`flex flex-row items-center font-semibold text-base dark:hover:text-white hover:text-nft-dark mx-3 ${
             active === 'Explore NFTs'
@@ -54,7 +55,7 @@ const MenuItems = ({ isMobile, active, setActive }: menuItemsProps) => {
         </div>
       </li>
       {isConnected && (
-        <li onMouseEnter={() => setDropdownOpen(true)} className="relative" style={{ padding: '0.75rem 0.5rem' }}>
+        <li onMouseEnter={() => {setDropdownOpen(true)}} className="relative" style={{ padding: '0.75rem 0.5rem' }}>
           <div
             onClick={toggleDropdown}
             className={`flex flex-row items-center font-semibold text-base dark:hover:text-nft-gray-1 hover:text-nft-black-3 mx-3 ${
@@ -107,29 +108,29 @@ const MenuItems = ({ isMobile, active, setActive }: menuItemsProps) => {
         </li>
       )}
     </ul>
-  );
-};
+  )
+}
 
-const Navbar = () => {
-  const [active, setActive] = useState('Explore NFTs');
-  const { theme, setTheme } = useTheme();
-  const [isOpen, setIsOpen] = useState(false);
-  const { isConnected } = useAccount();
+const Navbar = (): JSX.Element => {
+  const [active, setActive] = useState('Explore NFTs')
+  const { theme, setTheme } = useTheme()
+  const [isOpen, setIsOpen] = useState(false)
+  const { isConnected } = useAccount()
 
-  console.log({ theme });
+  console.log({ theme })
 
   return (
     <nav className="flexBetween w-full fixed z-10 p-4 flex-row border-b dark:bg-nft-dark bg-white dark:border-nft-black-1 border-nft-gray-1">
       <div className="flex flex-1 flex-row justify-start">
         <div className="flex items-center pr-5">
           <Link href="/">
-            <div className="flexCenter md:hidden cursor-pointer" onClick={() => {}}>
+            <div className="flexCenter md:hidden cursor-pointer" onClick={() => {console.log('clicked the logo 1')}}>
               <Image src={images.logo02} objectFit="contain" width={32} height={32} alt="logo" />
               <p className="dark:text-white text-nft-black-1 font-semibold text-lg ml-1">Marketplace</p>
             </div>
           </Link>
           <Link href="/">
-            <div className="hidden md:flex" onClick={() => {}}>
+            <div className="hidden md:flex" onClick={() => {console.log('clicked the logo 1')}}>
               <Image src={images.logo02} objectFit="contain" width={32} height={32} alt="logo" />
             </div>
           </Link>
@@ -139,7 +140,7 @@ const Navbar = () => {
             type="checkbox"
             className="checkbox"
             id="checkbox"
-            onChange={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+            onChange={() => {setTheme(theme === 'light' ? 'dark' : 'light')}}
           />
           <label htmlFor="checkbox" className="flexBetween w-8 h-4 bg-black rounded-2xl p-1 relative label">
             <i className="fas fa-sun" />
@@ -159,14 +160,15 @@ const Navbar = () => {
       </div>
 
       <div className="hidden md:flex ml-2">
-        {isOpen ? (
+        {isOpen
+        ? (
           <Image
             src={images.cross}
             alt="close mobile menu icon"
             objectFit="contain"
             width={20}
             height={20}
-            onClick={() => setIsOpen(false)}
+            onClick={() => {setIsOpen(false)}}
             className={theme === 'light' ? 'filter invert' : undefined}
           />
         ) : (
@@ -176,7 +178,7 @@ const Navbar = () => {
             objectFit="contain"
             width={25}
             height={25}
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => {setIsOpen(!isOpen)}}
             className={theme === 'light' ? 'filter invert' : undefined}
           />
         )}
@@ -193,7 +195,7 @@ const Navbar = () => {
         )}
       </div>
     </nav>
-  );
+  )
 }
 
-export default Navbar;
+export default Navbar

@@ -1,27 +1,27 @@
-'use client';
-import { Fragment } from 'react';
-import { useEvmNativeBalance, useEvmWalletTokenBalances } from '@moralisweb3/next';
-import { useAccount, useNetwork } from 'wagmi';
+'use client'
+import { Fragment } from 'react'
+import { useEvmNativeBalance, useEvmWalletTokenBalances } from '@moralisweb3/next'
+import { useAccount, useNetwork } from 'wagmi'
 
-import { TokenCard } from '@/components';
+import { TokenCard } from '@/components'
 
 const MyTokens = (): JSX.Element => {
-  const { address } = useAccount();
-  const { chain } = useNetwork();
+  const { address } = useAccount()
+  const { chain } = useNetwork()
 
   const { data: tokens } = useEvmWalletTokenBalances({
     address: address ?? '',
     chain: chain?.id,
-  });
+  })
 
   const { data: nativeBalance } = useEvmNativeBalance({
     address: address ?? '',
     chain: chain?.id,
-  });
+  })
 
   console.log(nativeBalance, 'llllllllllllll')
 
-  console.log(tokens, 'tokens****');
+  console.log(tokens, 'tokens****')
   return (
     <div className="flex justify-center sm:px-4 p-12" style={{ padding: '6rem 2rem'}}>
       <div className="w-full minmd:w-4/5">
@@ -53,7 +53,7 @@ const MyTokens = (): JSX.Element => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default MyTokens;
+export default MyTokens

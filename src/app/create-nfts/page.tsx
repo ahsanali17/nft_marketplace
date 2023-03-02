@@ -9,9 +9,9 @@ import { Button, Input } from '@/components'
 import images from '../../assets'
 import { NFTContext } from 'context/NFTContext'
 
-const CreatedNFTS = () => {
+const CreatedNFTS = (): JSX.Element => {
   const [fileUrl, setFileUrl] = useState<string | undefined | null>(null);
-  const [formInput, setFormInput] = useState({ price: '', name: '', description: '' })
+  const [formInput, setFormInput] = useState<{}>({ price: '', name: '', description: '' })
   const { theme } = useTheme()
   const { uploadToIPFS } = useContext(NFTContext)
 
@@ -121,4 +121,4 @@ const CreatedNFTS = () => {
   )
 }
 
-export default CreatedNFTS;
+export default CreatedNFTS

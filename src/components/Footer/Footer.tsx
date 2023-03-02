@@ -1,16 +1,16 @@
-'use client';
-import Image from 'next/image';
-import { useTheme } from 'next-themes';
+'use client'
+import Image from 'next/image'
+import { useTheme } from 'next-themes'
 
-import images from '../../assets';
-import { Button } from '..';
+import images from '../../assets'
+import { Button } from '..'
 
 interface FooterLinksProps {
-  heading: string;
-  items: string[];
+  heading: string
+  items: string[]
 }
 
-const FooterLinks = ({ heading, items }: FooterLinksProps) => (
+const FooterLinks = ({ heading, items }: FooterLinksProps): JSX.Element => (
   <div className='flex-1 justify-start items-start'>
     <h3 className='font-poppins dark:text-white text-nft-black-1 font-semibold text-xl mb-10'>
       {heading}
@@ -23,10 +23,10 @@ const FooterLinks = ({ heading, items }: FooterLinksProps) => (
       </p>
     ))}
   </div>
-);
+)
 
-const Footer = () => {
-  const { theme } = useTheme();
+const Footer = (): JSX.Element => {
+  const { theme } = useTheme()
 
   return (
     <footer className='flexCenter flex-col border-t border-nft-gray-1 dark:border-nft-black-1 py-16 sm:py-8'>
@@ -44,7 +44,7 @@ const Footer = () => {
               className='w-full h-full px-4 text-xs minlg:text-lg font-normal dark:text-white text-nft-black-1 bg-white dark:bg-nft-black-2 rounded-md outline-none'
             />
             <div className='flex-initial'>
-              <Button btnName='Email me' classStyles='rounded-md' handleClick={() => {}} />
+              { <Button btnName='Email me' classStyles='rounded-md' handleClick={() => console.log('footer email me button pressed')} /> }
             </div>
           </div>
         </div>
@@ -73,7 +73,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

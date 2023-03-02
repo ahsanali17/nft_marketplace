@@ -1,73 +1,73 @@
-'use client';
+'use client'
 
-import { getEllipsisTxt } from 'utils/format';
-import Button from '../Button/Button';
+import { getEllipsisTxt } from 'utils/format'
+import Button from '../Button/Button'
 
 interface TransactionData {
  from: {
    config: {
-     items: unknown;
-   };
-   _value: string;
- };
+     items: unknown
+   }
+   _value: string
+ }
  to: {
    config: {
-     items: unknown;
-   };
-   _value: string;
- };
- nonce: string;
- data: string;
+     items: unknown
+   }
+   _value: string
+ }
+ nonce: string
+ data: string
  value: {
-   rawValue: string;
- };
- hash: string;
+   rawValue: string
+ }
+ hash: string
  chain: {
    config: {
-     items: unknown;
-   };
-   _value: string;
+     items: unknown
+   }
+   _value: string
    _chainlistData: {
-     name: string;
-     chain: string;
-     icon: string;
-     rpc: string[];
-     faucets: unknown[];
+     name: string
+     chain: string
+     icon: string
+     rpc: string[]
+     faucets: unknown[]
      nativeCurrency: {
-       name: string;
-       symbol: string;
-       decimals: number;
-     };
-     infoURL: string;
-     shortName: string;
-     chainId: number;
-     networkId: number;
-     slip44: number;
+       name: string
+       symbol: string
+       decimals: number
+     }
+     infoURL: string
+     shortName: string
+     chainId: number
+     networkId: number
+     slip44: number
      ens: {
-       registry: string;
-     };
-     explorers: {
-       name: string;
-       url: string;
-       standard: string;
-     }[];
-   };
- };
- gas: string;
- gasPrice: string;
- index: number;
- blockNumber: string;
- blockHash: string;
- blockTimestamp: string;
- cumulativeGasUsed: string;
- gasUsed: string;
- receiptStatus: number;
- logs: unknown[];
+       registry: string
+     }
+     explorers: Array<{
+       name: string
+       url: string
+       standard: string
+     }>
+   }
+ }
+ gas: string
+ gasPrice: string
+ index: number
+ blockNumber: string
+ blockHash: string
+ blockTimestamp: string
+ cumulativeGasUsed: string
+ gasUsed: string
+ receiptStatus: number
+ logs: unknown[]
 }
 
-const TransactionCard = ({ transaction }: any) => {
-  const txArray = Object.entries(transaction);
-  const [txData] = txArray;
+const TransactionCard = ({ transaction }: any): JSX.Element => {
+  const txArray: Array<[string, unknown]> = Object.entries(transaction)
+  const [txData] = txArray
 
   const [
     _data,
@@ -88,8 +88,8 @@ const TransactionCard = ({ transaction }: any) => {
           nativeCurrency: { name: currencyName, symbol: currencySymbol },
           infoURL: chainInfoUrl,
           shortName: chainShortName,
-          explorers: [{ url: explorerUrl }],
-        },
+          explorers: [{ url: explorerUrl }]
+        }
       },
       gas,
       gasPrice,
@@ -100,13 +100,13 @@ const TransactionCard = ({ transaction }: any) => {
       cumulativeGasUsed,
       gasUsed,
       receiptStatus,
-      logs,
-    },
-  ] = txData as [string, TransactionData];
+      logs
+    }
+  ] = txData as [string, TransactionData]
 
   const handleExplorerLink = (): void => {
-    window.open(`${explorerUrl}/tx/${hash}`, '_blank');
-  };
+    window.open(`${explorerUrl}/tx/${hash}`, '_blank')
+  }
 
   return (
     <div className="flex-1 min-w-215 max-w-max xs:max-w-none sm:w-full sm:min-w-155 minmd:min-w-256 minlg:min-w-327 dark:bg-white bg-white rounded-2xl p-4 m-4 minlg:m-8 sm:my-2 sm:mx-2 cursor-pointer shadow-md">
@@ -144,7 +144,7 @@ const TransactionCard = ({ transaction }: any) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default TransactionCard;
+export default TransactionCard

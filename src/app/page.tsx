@@ -1,54 +1,54 @@
-'use client';
-import { useState, useEffect, useRef } from 'react';
-import Image from 'next/image';
-import { useTheme } from 'next-themes';
+'use client'
+import { useState, useEffect, useRef } from 'react'
+import Image from 'next/image'
+import { useTheme } from 'next-themes'
 
-import { Banner, CreatorCard, NFTCard } from '../components';
-import images from '../assets';
-import { makeId } from '../../utils/makeId';
+import { Banner, CreatorCard, NFTCard } from '../components'
+import images from '../assets'
+import { makeId } from '../../utils/makeId'
 
-const Home = () => {
-  const [hideButtons, setHideButtons] = useState(false);
-  const { theme, setTheme } = useTheme();
-  const parentRef = useRef<HTMLDivElement>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
+const Home = (): JSX.Element => {
+  const [hideButtons, setHideButtons] = useState(false)
+  const { theme, setTheme } = useTheme()
+  const parentRef = useRef<HTMLDivElement>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
 
-  const handleScroll = (direction: string) => {
-    const { current } = scrollRef;
+  const handleScroll = (direction: string): void => {
+    const { current } = scrollRef
 
-    const scrollAmount = window.innerWidth > 1800 ? 270 : 210;
+    const scrollAmount = window.innerWidth > 1800 ? 270 : 210
 
-    if (current) {
+    if (current && (current ?? '')) {
       if (direction === 'left') {
-        current.scrollLeft -= scrollAmount;
+        current.scrollLeft -= scrollAmount
       }
 
       if (direction === 'right') {
-        current.scrollLeft += scrollAmount;
+        current.scrollLeft += scrollAmount
       }
     }
-  };
+  }
 
-  const isScrollable = () => {
-    const { current } = scrollRef;
-    const { current: parent } = parentRef;
+  const isScrollable = (): void => {
+    const { current } = scrollRef
+    const { current: parent } = parentRef
 
-    if (current && parent && current.scrollWidth >= parent.offsetWidth) {
-      setHideButtons(false);
+    if (current && parent && current.scrollWidth >= parent.offsetWidth && (current ?? '') && (parent ?? '')) {
+      setHideButtons(false)
     } else {
-      setHideButtons(true);
+      setHideButtons(true)
     }
-  };
+  }
 
   useEffect(() => {
-    isScrollable();
+    isScrollable()
 
-    window.addEventListener('resize', isScrollable);
+    window.addEventListener('resize', isScrollable)
 
     return () => {
-      window.removeEventListener('resize', isScrollable);
-    };
-  }, []);
+      window.removeEventListener('resize', isScrollable)
+    }
+  }, [])
 
   return (
     <div className="flex justify-center sm:px-4 p-12" style={{ padding: '6rem 2rem'}}>
@@ -67,10 +67,7 @@ const Home = () => {
             className="relative flex-1 max-w-full flex mt-3"
             ref={parentRef}
           >
-            <div
-              className='flex flex-row w-max overflow-x-scroll no-scrollbar select-none'
-              ref={scrollRef}
-              style={{ maxWidth: '100%', overflow:'auto' }}
+            <div className='flex flex-row w-max overflow-x-scroll no-scrollbar select-none' ref={scrollRef} style={{ maxWidth:'100%', overflow:'auto' }}
             >
               {[1,2,3,4,5,6,7,8,9,10].map((i) => (
                 <CreatorCard
@@ -87,25 +84,29 @@ const Home = () => {
                     onClick={() => handleScroll('left')} className="absolute w-8 h-8 minlg:w-12 minlg:h-12 top-45 cursor-pointer left-0"
                     style={{ left: '0', top: '7rem'}}
                   >
-                    <Image
-                      src={images.left}
-                      layout="fill"
-                      objectFit="contain"
-                      alt="left_arrow"
-                      className={theme === 'light' ? 'filter invert' : undefined}
-                    />
+                    {
+                      <Image
+                        src={images.left}
+                        layout="fill"
+                        objectFit="contain"
+                        alt="left_arrow"
+                        className={theme === 'light' ? 'filter invert' : undefined}
+                      />
+                    }
                   </div>
                   <div
                     onClick={() => handleScroll('right')} className="absolute w-8 h-8 minlg:w-12 minlg:h-12 top-45 cursor-pointer right-0"
                     style={{ right: '0', top: '7rem'}}
                   >
-                    <Image
-                      src={images.right}
-                      layout="fill"
-                      objectFit="contain"
-                      alt="left_arrow"
-                      className={theme === 'light' ? 'filter invert' : undefined}
-                    />
+                    {
+                      <Image
+                        src={images.right}
+                        layout="fill"
+                        objectFit="contain"
+                        alt="left_arrow"
+                        className={theme === 'light' ? 'filter invert' : undefined}
+                      />
+                    }
                   </div>
                 </>
               )}
@@ -130,7 +131,7 @@ const Home = () => {
                 price: (10 - i * 0.534).toFixed(2),
                 seller: `0x${makeId(3)}...${makeId(4)}`,
                 owner: `0x${makeId(3)}...${makeId(4)}`,
-                description: 'NFT for sale',
+                description: 'NFT for sale'
               }}
             />
           ))}
@@ -139,7 +140,6 @@ const Home = () => {
       </div>
     </div>
   )
-};
+}
 
-export default Home;
-
+export default Home

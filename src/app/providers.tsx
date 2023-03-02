@@ -1,13 +1,14 @@
-'use client';
+'use client'
 
-import { WagmiConfig } from 'wagmi';
-import { ThemeProvider } from 'next-themes';
-import { SessionProvider } from 'next-auth/react';
-import Script from 'next/script';
-import { client } from './wagmiClient';
-import { NFTProvider } from 'context/NFTContext';
+import { WagmiConfig } from 'wagmi'
+import { ThemeProvider } from 'next-themes'
+import { SessionProvider } from 'next-auth/react'
+import Script from 'next/script'
+import { client } from './wagmiClient'
+import { NFTProvider } from 'context/NFTContext'
+import type { Provider } from 'react'
 
-export default function Providers({ children }: any) {
+const Providers = ({ children }: Provider<JSX.Element> | any | undefined): JSX.Element => {
   return (
     <WagmiConfig client={client}>
       <SessionProvider refetchInterval={0}>
@@ -24,5 +25,7 @@ export default function Providers({ children }: any) {
         </NFTProvider>
       </SessionProvider>
     </WagmiConfig>
-  );
+  )
 }
+
+export default Providers

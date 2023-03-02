@@ -45,7 +45,7 @@ export const NFTProvider = ({ children }: any) => {
     const signature = await signMessageAsync({ message: challenge.message });
 
     await signIn('moralis-auth', { message: challenge.message, signature, network: 'Evm', redirect: false });
-    window.location.reload();
+    // window.location.reload();
   } catch (e: any) {
     console.error(`Error signing in: ${e.message}`);
   }

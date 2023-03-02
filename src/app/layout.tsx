@@ -1,12 +1,8 @@
-import './globals.css';
-import Providers from './providers';
-import { Navbar, Footer } from '../components';
+import './globals.css'
+import Providers from './providers'
+import { Navbar, Footer } from '../components'
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}): JSX.Element {
+const RootLayout = ({children}: {children: React.ReactNode}): JSX.Element => {
   return (
     <html lang="en">
       {/*
@@ -22,5 +18,7 @@ export default function RootLayout({
         </Providers>
       </body>
     </html>
-  );
+  )
 }
+
+export default RootLayout

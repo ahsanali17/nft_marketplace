@@ -1,18 +1,18 @@
-'use client';
-import type { EvmAddress, EvmChain } from '@moralisweb3/common-evm-utils';
+'use client'
+import type { EvmAddress, EvmChain } from '@moralisweb3/common-evm-utils'
 
-import { getEllipsisTxt } from 'utils/format';
+import { getEllipsisTxt } from 'utils/format'
 
 interface TokenCardProps {
-  value: string;
-  decimals: number | undefined;
-  name: string | undefined;
-  symbol: string | undefined;
-  contractAddress: EvmAddress | string | undefined;
-  chain: EvmChain | string | undefined;
+  value: string
+  decimals: number | undefined
+  name: string | undefined
+  symbol: string | undefined
+  contractAddress: EvmAddress | string | undefined
+  chain: EvmChain | string | undefined
 }
 
-const TokenCard = ({ value, decimals, name, symbol, contractAddress, chain }: TokenCardProps) => {
+const TokenCard = ({ value, decimals, name, symbol, contractAddress, chain }: TokenCardProps): JSX.Element => {
   return (
     <div className="flex-1 min-w-215 max-w-max xs:max-w-none sm:w-full sm:min-w-155 minmd:min-w-256 minlg:min-w-327 dark:bg-white bg-white rounded-2xl p-4 m-4 minlg:m-8 sm:my-2 sm:mx-2 cursor-pointer shadow-md">
       <div className="mt-3 flex flex-col">
@@ -66,7 +66,7 @@ const TokenCard = ({ value, decimals, name, symbol, contractAddress, chain }: To
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default TokenCard;
+export default TokenCard

@@ -1,9 +1,9 @@
-'use client';
-import { Fragment } from 'react';
-import { useEvmWalletNFTs } from '@moralisweb3/next';
-import { useAccount, useNetwork } from 'wagmi';
+'use client'
+import { Fragment } from 'react'
+import { useEvmWalletNFTs } from '@moralisweb3/next'
+import { useAccount, useNetwork } from 'wagmi'
 
-import MyNFTCard from '../../components/MyNFTCard/MyNFTCard';
+import MyNFTCard from '../../components/MyNFTCard/MyNFTCard'
 
 const MyNFTs = (): JSX.Element => {
   const { address } = useAccount();
@@ -54,7 +54,7 @@ const MyNFTs = (): JSX.Element => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default MyNFTs;
+export default MyNFTs

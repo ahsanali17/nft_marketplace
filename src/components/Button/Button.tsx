@@ -1,7 +1,7 @@
 interface ButtonProps {
-  classStyles: string;
-  btnName: string;
-  handleClick: VoidFunction;
+  classStyles: string
+  btnName: string
+  handleClick: VoidFunction
 }
 
 const Button = ({ classStyles, btnName, handleClick }: ButtonProps): JSX.Element => {
@@ -13,7 +13,7 @@ const Button = ({ classStyles, btnName, handleClick }: ButtonProps): JSX.Element
     >
       {btnName}
     </button>
-  );
-};
+  )
+}
 
-export default Button;
+export default Button

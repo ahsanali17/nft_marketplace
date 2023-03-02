@@ -8,7 +8,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
-    // 'plugin:prettier/recommended',
+    'plugin:prettier/recommended',
     'standard-with-typescript',
     'next/core-web-vitals',
   ],
@@ -22,10 +22,12 @@ module.exports = {
   },
   plugins: [
     'react',
-    // 'prettier'
+    'prettier'
   ],
   root: true,
   rules: {
+    'prettier/prettier': ['warn'],
+
     // 'prettier/prettier': [
     //   'error',
     //   {
@@ -37,7 +39,20 @@ module.exports = {
     //     tabWidth: 2,
     //   }
     // ],
-    'semi': 0,
+    "@typescript-eslint/no-unsafe-return": "warn",
+
+    "@typescript-eslint/no-unsafe-assignment": "warn",
+    "comma-spacing": "off",
+    "@typescript-eslint/comma-spacing": "warn",
+    "object-curly-spacing": "off",
+    "@typescript-eslint/object-curly-spacing": "warn",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "indent": "off",
+    "@typescript-eslint/indent": "warn",
+    "@typescript-eslint/member-delimiter-style": "warn",
+    "no-unexpected-multiline": "warn",
+    'semi': 'off',
     'no-console': 0,
     'jsx-a11y/label-has-associated-control': 0,
     'no-nested-ternary': 0,

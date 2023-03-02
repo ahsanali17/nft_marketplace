@@ -1,9 +1,9 @@
-'use client';
-import React from 'react';
-import Image from 'next/image';
-// import { EvmAddress, EvmNft } from '@moralisweb3/common-evm-utils';
+'use client'
+import React from 'react'
+import Image from 'next/image'
+// import { EvmAddress, EvmNft } from '@moralisweb3/common-evm-utils'
 
-import images from '../../assets';
+import images from '../../assets'
 
 // interface nftCardProps {
 //   nft: {
@@ -36,24 +36,24 @@ import images from '../../assets';
 //     },
 //     tokenHash: string,
 //   }
-//   chain: string | undefined;
-//   address: EvmAddress | string;
+//   chain: string | undefined
+//   address: EvmAddress | string
 // }
 
 // Keeping it any for now since the type object is too large.
-const MyNFTCard = ({ nft }: any) => {
-  const { name, symbol, tokenId } = nft;
+const MyNFTCard = ({ nft }: any): JSX.Element => {
+  const { name, symbol, tokenId } = nft
 
   // const { data: nftMetadata } = useEvmContractNFTs({
   //    address: tokenAddress,
   //    chain: chain?.id,
   //    normalizeMetadata: true,
   //    limit: 10
-  //  });
+  //  })
   // const { data: nftData } = useEvmNFTMetadata({
   //    address: address,
   //    chain: chain?.id,
-  //  });
+  //  })
 
   return (
     <div className="flex-1 min-w-215 max-w-max xs:max-w-none sm:w-full sm:min-w-155 minmd:min-w-256 minlg:min-w-327 dark:bg-nft-black-3 bg-white rounded-2xl p-4 m-4 minlg:m-8 sm:my-2 sm:mx-2 cursor-pointer shadow-md">
@@ -71,7 +71,7 @@ const MyNFTCard = ({ nft }: any) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default MyNFTCard;
+export default MyNFTCard

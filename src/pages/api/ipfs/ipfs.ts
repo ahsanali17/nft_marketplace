@@ -1,11 +1,12 @@
 import { create as ipfsHttpClient } from 'ipfs-http-client'
+import type { StaticImageData } from 'next/image'
 
 export interface UploadToIPFSProps {
-  file: any
-  setFileUrl: any
+  file: any | undefined
+  setFileUrl: undefined
 }
 
-export const uploadToIPFS = async ({ file }: UploadToIPFSProps) => {
+export const uploadToIPFS = async ({ file }: UploadToIPFSProps): Promise<string | undefined> => {
   try {
     const projectId = process.env.INFURA_PROJECT_ID ?? ''
     const projectSecret = process.env.INFURA_API_KEY ?? ''

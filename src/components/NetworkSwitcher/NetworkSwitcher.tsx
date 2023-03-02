@@ -1,19 +1,19 @@
-'use client';
-import React from 'react';
-import { useNetwork, useSwitchNetwork } from 'wagmi';
+'use client'
+import React from 'react'
+import { useNetwork, useSwitchNetwork } from 'wagmi'
 
 const NetworkSwitcher = (): JSX.Element => {
-  const { chain } = useNetwork();
-  const { switchNetwork } = useSwitchNetwork();
+  const { chain } = useNetwork()
+  const { switchNetwork } = useSwitchNetwork()
 
-  const isMainnet = chain?.id === 1;
+  const isMainnet = chain?.id === 1
 
   const handleToggle = (event: any): void => {
-    const chainId = isMainnet ? 5 : 1;
-    if (switchNetwork) {
-      switchNetwork(chainId);
+    const chainId = isMainnet ? 5 : 1
+    if (switchNetwork && typeof switchNetwork === 'function') {
+      switchNetwork(chainId)
     }
-  };
+  }
 
   return (
     <div className="flex flex-col items-center">
@@ -28,7 +28,8 @@ const NetworkSwitcher = (): JSX.Element => {
         htmlFor="network-toggle"
         className="flex items-center w-10 h-8 bg-gray-300 rounded-lg justify-center"
       >
-        {isMainnet ? (
+        {isMainnet
+        ? (
           <span className="text-lg font-bold text-gray-800">
             M
           </span>
@@ -42,7 +43,7 @@ const NetworkSwitcher = (): JSX.Element => {
         {isMainnet ? 'Mainnet' : 'Testnet'}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default NetworkSwitcher;
+export default NetworkSwitcher

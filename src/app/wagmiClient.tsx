@@ -1,6 +1,6 @@
-import { createClient } from 'wagmi';
-import { configureChains } from '@wagmi/core';
-import { publicProvider } from 'wagmi/providers/public';
+import { createClient } from 'wagmi'
+import { configureChains } from '@wagmi/core'
+import { publicProvider } from 'wagmi/providers/public'
 import {
   arbitrum,
   arbitrumGoerli,
@@ -18,7 +18,7 @@ import {
   polygon,
   polygonMumbai,
   sepolia
-} from '@wagmi/core/chains';
+} from '@wagmi/core/chains'
 
 const { provider, webSocketProvider } = configureChains(
   [
@@ -40,10 +40,10 @@ const { provider, webSocketProvider } = configureChains(
     sepolia
   ],
   [publicProvider()]
-);
+)
 
 export const client = createClient({
   autoConnect: true,
   provider,
   webSocketProvider
-});
+})

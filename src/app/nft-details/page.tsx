@@ -1,9 +1,9 @@
-import React from 'react'
+import type { FC } from 'react'
 
-const NFTDetails = () => {
+const NFTDetails: FC = () => {
   return (
     <div>NFTDetails</div>
   )
 }
 
-export default NFTDetails;
+export default NFTDetails

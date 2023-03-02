@@ -1,18 +1,18 @@
-import { useContext } from 'react';
-import Image from 'next/image';
+import { useContext } from 'react'
+import Image from 'next/image'
 
-import images from '../../assets';
-import { NFTContext } from '../../../context/NFTContext';
+import images from '../../assets'
+import { NFTContext } from '../../../context/NFTContext'
 
 interface creatorCardProps {
-  rank: number;
-  creatorImage: any;
-  creatorName: string;
-  creatorEth: number;
+  rank: number
+  creatorImage: any
+  creatorName: string
+  creatorEth: number
 }
 
-const CreatorCard = ({ rank, creatorImage, creatorName, creatorEth }: creatorCardProps) => {
-  const { nftCurrency } = useContext(NFTContext);
+const CreatorCard = ({ rank, creatorImage, creatorName, creatorEth }: creatorCardProps): JSX.Element => {
+  const { nftCurrency } = useContext(NFTContext)
 
   return (
     <div className="min-w-190 minlg:min-w-240 dark:bg-nft-black-3 bg-white border dark:border-nft-black-3 border-nft-gray-1 rounded-3xl flex flex-col p-4 m-4">
@@ -46,7 +46,7 @@ const CreatorCard = ({ rank, creatorImage, creatorName, creatorEth }: creatorCar
         </p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CreatorCard;
+export default CreatorCard
