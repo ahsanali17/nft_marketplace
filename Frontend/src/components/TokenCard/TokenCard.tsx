@@ -1,6 +1,6 @@
 import type { EvmAddress, EvmChain } from '@moralisweb3/common-evm-utils'
 
-import { getEllipsisTxt } from 'utils/format'
+import { getEllipsisTxt } from '../../../utils/format'
 
 interface TokenCardProps {
   value: string

@@ -125,7 +125,7 @@ const TransactionCard = ({ transaction }: any): JSX.Element => {
         </div>
         <div className="flex items-center justify-between">
           <p className="text-nft-black-3 font-semibold text-sm">Gas used:</p>
-          <p className="text-nft-black-1 font-semibold text-sm">{gasUsed.toString()}</p>
+          <p className="text-nft-black-1 font-semibold text-sm">{gasUsed?.toString()}</p>
         </div>
         <div className="flex items-center justify-between">
           <p className="text-nft-black-3 font-semibold text-sm">Date:</p>
@@ -133,7 +133,7 @@ const TransactionCard = ({ transaction }: any): JSX.Element => {
         </div>
         <div className="flex items-center justify-between">
           <p className="text-nft-black-3 font-semibold text-sm">Value:</p>
-          <p className="text-nft-black-1 font-semibold text-sm">{valueRawValue.toString()}</p>
+          <p className="text-nft-black-1 font-semibold text-sm">{valueRawValue?.toString()}</p>
         </div>
       </div>
       <div className="flex flex-row justify-center mt-4 p-1">
