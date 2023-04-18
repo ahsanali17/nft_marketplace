@@ -43,7 +43,7 @@ const Footer = (): JSX.Element => {
               className='w-full h-full px-4 text-xs minlg:text-lg font-normal dark:text-white text-nft-black-1 bg-white dark:bg-nft-black-2 rounded-md outline-none'
             />
             <div className='flex-initial'>
-              { <Button btnName='Email me' classStyles='rounded-md' handleClick={() => console.log('footer email me button pressed')} /> }
+              {<Button btnName='Email me' classStyles='rounded-md' handleClick={() => { console.log('footer email me button pressed') }} />}
             </div>
           </div>
         </div>

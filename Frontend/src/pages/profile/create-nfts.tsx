@@ -1,5 +1,5 @@
-import { useState, useMemo, useCallback, useContext} from 'react'
-import type { SetStateAction, Dispatch } from 'react'
+import { useState, useMemo, useCallback, useContext } from 'react'
+// import type { SetStateAction, Dispatch } from 'react'
 
 import { useDropzone } from 'react-dropzone'
 import Image from 'next/image'
@@ -10,8 +10,8 @@ import images from '../../assets'
 import { NFTContext } from '../../../context/NFTContext'
 
 const CreatedNFTS = (): JSX.Element => {
-  const [fileUrl, setFileUrl] = useState<string | undefined>();
-  const [formInput, setFormInput] = useState<{}>({ price: '', name: '', description: '' })
+  const [fileUrl, setFileUrl] = useState<string | undefined>()
+  const [formInput, setFormInput] = useState<Record<string, unknown>>({ price: '', name: '', description: '' })
   const { theme } = useTheme()
   const { uploadToIPFS } = useContext(NFTContext)
 
@@ -25,8 +25,8 @@ const CreatedNFTS = (): JSX.Element => {
 
   const { getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject } = useDropzone({
     onDrop,
-    accept: {accept: ['img', 'png', 'jpeg']},
-    maxSize: 5000000,
+    accept: { accept: ['img', 'png', 'jpeg'] },
+    maxSize: 5000000
   })
 
   const fileStyle = useMemo(
@@ -36,16 +36,16 @@ const CreatedNFTS = (): JSX.Element => {
        ${isDragAccept ? ' border-file-accept ' : ''}
        ${isDragReject ? ' border-file-reject ' : ''}
       `),
-    [isDragActive, isDragReject, isDragAccept],
+    [isDragActive, isDragReject, isDragAccept]
   )
 
   console.log(formInput)
 
   return (
     <div className='flex justify-center'>
-      <div className='flex justify-start sm:px-4 p-12' style={{padding: '5rem 3rem'}}>
+      <div className='flex justify-start sm:px-4 p-12' style={{ padding: '5rem 3rem' }}>
         <div className='w-3/5 md:w-full'>
-          <h1 className="font-poppins dark:text-white text-nft-black-1 text-2xl minlg:text-4xl font-semibold sm:mb-4" style={{fontSize: '1.5rem', padding: '1.5rem 1rem'}}>
+          <h1 className="font-poppins dark:text-white text-nft-black-1 text-2xl minlg:text-4xl font-semibold sm:mb-4" style={{ fontSize: '1.5rem', padding: '1.5rem 1rem' }}>
             Create new NFT
           </h1>
 
@@ -55,8 +55,8 @@ const CreatedNFTS = (): JSX.Element => {
             </p>
 
             <div className='mt-4'>
-              <div {... getRootProps()} className={fileStyle}>
-                <input {... getInputProps()} />
+              <div {...getRootProps()} className={fileStyle}>
+                <input {...getInputProps()} />
                 <div className='flexCenter flex-col text-center'>
                   <p className='font-poppins dark:text-white text-nft-black-1 font-semibold text-xl p-4'>
                     PNG, GIF, SVG, WEBM, Max 100mb.
@@ -84,7 +84,7 @@ const CreatedNFTS = (): JSX.Element => {
               {fileUrl && (
                 <aside>
                   <div>
-                    <img src={fileUrl} alt="asset_file" />
+                    <Image src={fileUrl} alt="asset_file" />
                   </div>
                 </aside>
               )}
@@ -94,26 +94,26 @@ const CreatedNFTS = (): JSX.Element => {
             inputType="input"
             title="Name"
             placeholder="NFT Name"
-            handleClick={(e) => setFormInput({...formInput, name: e.target.value})}
+            handleClick={(e) => { setFormInput({ ...formInput, name: e.target.value }) }}
           />
           <Input
             inputType='textarea'
             title="Description"
             placeholder="NFT Description"
-            handleClick={(e) => setFormInput({...formInput, description: e.target.value})}
+            handleClick={(e) => { setFormInput({ ...formInput, description: e.target.value }) }}
           />
           <Input
             inputType='number'
             title="Price"
             placeholder="NFT Price"
-            handleClick={(e) => setFormInput({...formInput, price: e.target.value})}
+            handleClick={(e) => { setFormInput({ ...formInput, price: e.target.value }) }}
           />
 
           <div className='mt-7 w-full flex justify-end'>
             <Button
               btnName='Create NFT'
               classStyles='rounded-xl'
-              handleClick={() => {}}
+              handleClick={() => { }}
             />
           </div>
         </div>

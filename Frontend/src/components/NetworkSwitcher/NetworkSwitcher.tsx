@@ -1,5 +1,5 @@
-import React from 'react'
-import { useNetwork, useSwitchNetwork } from 'wagmi'
+import React from "react"
+import { useNetwork, useSwitchNetwork } from "wagmi"
 
 const NetworkSwitcher = (): JSX.Element => {
   const { chain } = useNetwork()
@@ -9,7 +9,7 @@ const NetworkSwitcher = (): JSX.Element => {
 
   const handleToggle = (event: any): void => {
     const chainId = isMainnet ? 5 : 1
-    if (switchNetwork && typeof switchNetwork === 'function') {
+    if (switchNetwork && typeof switchNetwork === "function") {
       switchNetwork(chainId)
     }
   }
@@ -27,19 +27,14 @@ const NetworkSwitcher = (): JSX.Element => {
         htmlFor="network-toggle"
         className="flex items-center w-10 h-8 bg-gray-300 rounded-lg justify-center"
       >
-        {isMainnet
-        ? (
-          <span className="text-lg font-bold text-gray-800">
-            M
-          </span>
+        {isMainnet ? (
+          <span className="text-lg font-bold text-gray-800">M</span>
         ) : (
-          <span className="text-lg font-bold text-gray-800">
-            G
-          </span>
+          <span className="text-lg font-bold text-gray-800">G</span>
         )}
       </label>
-      <div style={{ fontSize: '0.69rem' }} className="text-gray-400">
-        {isMainnet ? 'Mainnet' : 'Testnet'}
+      <div style={{ fontSize: "0.69rem" }} className="text-gray-400">
+        {isMainnet ? "Mainnet" : "Testnet"}
       </div>
     </div>
   )

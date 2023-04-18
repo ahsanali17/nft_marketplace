@@ -44,21 +44,22 @@ const MyTransactions = (): JSX.Element => {
               fontSize: '1.3rem'
             }}
           >
-            Wallet Balance: {nativeBalance?.balance.ether}/ether
+            Wallet Balance: {nativeBalance?.balance?.ether ?? 0}/ether
           </h1>
         </div>
-        {transactions?.length && (transactions ?? '')
-        ? (
-          <div className="w-full flex flex-wrap justify-start md:justify-center">
-            {transactions.map((tx: any, i: number) => (
-              <Fragment key={i}>
-                <TransactionCard transaction={tx} />
-              </Fragment>
-            ))}
-          </div>
-        ) : (
-          <div>Looks Like you do not have any transactions</div>
-        )}
+        {transactions?.length
+          ? (
+            <div className="w-full flex flex-wrap justify-start md:justify-center">
+              {transactions.map((tx: any, i: number) => (
+                <Fragment key={i}>
+                  <TransactionCard transaction={tx} />
+                </Fragment>
+              ))}
+            </div>
+          )
+          : (
+            <div>Looks Like you do not have any transactions</div>
+          )}
       </div>
     </div>
   )

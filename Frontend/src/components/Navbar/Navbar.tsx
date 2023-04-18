@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import type { SetStateAction, Dispatch } from 'react'
 import { useTheme } from 'next-themes'
 import Image from 'next/image'
@@ -9,8 +9,8 @@ import { ConnectToWallet, NetworkSwitcher } from '..'
 import { useAccount } from 'wagmi'
 
 interface menuItemsProps {
-  isMobile: boolean,
-  active: string,
+  isMobile: boolean
+  active: string
   setActive: Dispatch<SetStateAction<string>>
 }
 
@@ -21,11 +21,15 @@ const MenuItems = ({ isMobile, active, setActive }: menuItemsProps): JSX.Element
 
   useEffect(() => {
     if (typeof window === 'undefined') {
-      return;
+      return
     }
 
     const handleClickOutside = (event: MouseEvent): void => {
-      if ((dropdownRef ?? null) && dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (!dropdownRef) {
+        return
+      }
+
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setDropdownOpen(false)
       }
     }
@@ -48,22 +52,20 @@ const MenuItems = ({ isMobile, active, setActive }: menuItemsProps): JSX.Element
           onClick={() => {
             setActive('Explore NFTs')
           }}
-          className={`flex flex-row items-center font-semibold text-base dark:hover:text-white hover:text-nft-dark mx-3 ${
-            active === 'Explore NFTs'
-              ? 'dark:text-white text-nft-black-1'
-              : 'dark:text-nft-gray-3 text-nft-gray-2'
-          }`}
+          className={`flex flex-row items-center font-semibold text-base dark:hover:text-white hover:text-nft-dark mx-3 ${active === 'Explore NFTs'
+            ? 'dark:text-white text-nft-black-1'
+            : 'dark:text-nft-gray-3 text-nft-gray-2'
+            }`}
         >
           <Link href="/">Explore NFTs</Link>
         </div>
       </li>
       {isConnected && (
-        <li onMouseEnter={() => {setDropdownOpen(true)}} className="relative" style={{ padding: '0.75rem 0.5rem' }}>
+        <li onMouseEnter={() => { setDropdownOpen(true) }} className="relative" style={{ padding: '0.75rem 0.5rem' }}>
           <div
             onClick={toggleDropdown}
-            className={`flex flex-row items-center font-semibold text-base dark:hover:text-nft-gray-1 hover:text-nft-black-3 mx-3 ${
-              active === 'Profile' ? 'dark:text-white text-nft-black-3' : 'dark:text-white text-nft-black-3'
-            }`}
+            className={`flex flex-row items-center font-semibold text-base dark:hover:text-nft-gray-1 hover:text-nft-black-3 mx-3 ${active === 'Profile' ? 'dark:text-white text-nft-black-3' : 'dark:text-white text-nft-black-3'
+              }`}
           >
             <div className="flex items-center">
               <Link href="/profile" className="mr-1">
@@ -127,13 +129,13 @@ const Navbar = (): JSX.Element => {
       <div className="flex flex-1 flex-row justify-start">
         <div className="flex items-center pr-5">
           <Link href="/">
-            <div className="flexCenter md:hidden cursor-pointer" onClick={() => {console.log('clicked the logo 1')}}>
+            <div className="flexCenter md:hidden cursor-pointer" onClick={() => { console.log('clicked the logo 1') }}>
               <Image src={images.logo02} objectFit="contain" width={32} height={32} alt="logo" />
               <p className="dark:text-white text-nft-black-1 font-semibold text-lg ml-1">Marketplace</p>
             </div>
           </Link>
           <Link href="/">
-            <div className="hidden md:flex" onClick={() => {console.log('clicked the logo 1')}}>
+            <div className="hidden md:flex" onClick={() => { console.log('clicked the logo 1') }}>
               <Image src={images.logo02} objectFit="contain" width={32} height={32} alt="logo" />
             </div>
           </Link>
@@ -143,7 +145,7 @@ const Navbar = (): JSX.Element => {
             type="checkbox"
             className="checkbox"
             id="checkbox"
-            onChange={() => {setTheme(theme === 'light' ? 'dark' : 'light')}}
+            onChange={() => { setTheme(theme === 'light' ? 'dark' : 'light') }}
           />
           <label htmlFor="checkbox" className="flexBetween w-8 h-4 bg-black rounded-2xl p-1 relative label">
             <i className="fas fa-sun" />
@@ -164,27 +166,27 @@ const Navbar = (): JSX.Element => {
 
       <div className="hidden md:flex ml-2">
         {isOpen
-        ? (
-          <Image
-            src={images.cross}
-            alt="close mobile menu icon"
-            objectFit="contain"
-            width={20}
-            height={20}
-            onClick={() => {setIsOpen(false)}}
-            className={theme === 'light' ? 'filter invert' : undefined}
-          />
-        ) : (
-          <Image
-            src={images.menu}
-            alt="open mobile menu icon"
-            objectFit="contain"
-            width={25}
-            height={25}
-            onClick={() => {setIsOpen(!isOpen)}}
-            className={theme === 'light' ? 'filter invert' : undefined}
-          />
-        )}
+          ? (
+            <Image
+              src={images.cross}
+              alt="close mobile menu icon"
+              objectFit="contain"
+              width={20}
+              height={20}
+              onClick={() => { setIsOpen(false) }}
+              className={theme === 'light' ? 'filter invert' : undefined}
+            />
+          ) : (
+            <Image
+              src={images.menu}
+              alt="open mobile menu icon"
+              objectFit="contain"
+              width={25}
+              height={25}
+              onClick={() => { setIsOpen(!isOpen) }}
+              className={theme === 'light' ? 'filter invert' : undefined}
+            />
+          )}
 
         {isOpen && (
           <div className="fixed inset-0 top-65 dark:bg-nft-dark bg-white z-10 nav-h flex justify-between flex-col">

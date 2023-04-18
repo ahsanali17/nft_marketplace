@@ -2,65 +2,65 @@ import { getEllipsisTxt } from '../../../utils/format'
 import Button from '../Button/Button'
 
 interface TransactionData {
- from: {
-   config: {
-     items: unknown
-   }
-   _value: string
- }
- to: {
-   config: {
-     items: unknown
-   }
-   _value: string
- }
- nonce: string
- data: string
- value: {
-   rawValue: string
- }
- hash: string
- chain: {
-   config: {
-     items: unknown
-   }
-   _value: string
-   _chainlistData: {
-     name: string
-     chain: string
-     icon: string
-     rpc: string[]
-     faucets: unknown[]
-     nativeCurrency: {
-       name: string
-       symbol: string
-       decimals: number
-     }
-     infoURL: string
-     shortName: string
-     chainId: number
-     networkId: number
-     slip44: number
-     ens: {
-       registry: string
-     }
-     explorers: Array<{
-       name: string
-       url: string
-       standard: string
-     }>
-   }
- }
- gas: string
- gasPrice: string
- index: number
- blockNumber: string
- blockHash: string
- blockTimestamp: string
- cumulativeGasUsed: string
- gasUsed: string
- receiptStatus: number
- logs: unknown[]
+  from: {
+    config: {
+      items: unknown
+    }
+    _value: string
+  }
+  to: {
+    config: {
+      items: unknown
+    }
+    _value: string
+  }
+  nonce: string
+  data: string
+  value: {
+    rawValue: string
+  }
+  hash: string
+  chain: {
+    config: {
+      items: unknown
+    }
+    _value: string
+    _chainlistData: {
+      name: string
+      chain: string
+      icon: string
+      rpc: string[]
+      faucets: unknown[]
+      nativeCurrency: {
+        name: string
+        symbol: string
+        decimals: number
+      }
+      infoURL: string
+      shortName: string
+      chainId: number
+      networkId: number
+      slip44: number
+      ens: {
+        registry: string
+      }
+      explorers: Array<{
+        name: string
+        url: string
+        standard: string
+      }>
+    }
+  }
+  gas: string
+  gasPrice: string
+  index: number
+  blockNumber: string
+  blockHash: string
+  blockTimestamp: string
+  cumulativeGasUsed: string
+  gasUsed: string
+  receiptStatus: number
+  logs: unknown[]
 }
 
 const TransactionCard = ({ transaction }: any): JSX.Element => {

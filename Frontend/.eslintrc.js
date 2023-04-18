@@ -5,6 +5,7 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
+    'plugin:@next/next/recommended',
     'standard-with-typescript'
   ],
   overrides: [
@@ -90,6 +91,33 @@ module.exports = {
           'preferButton'
         ]
       }
-    ]
+    ],
+    "multiline-ternary": "warn",
+    "@typescript-eslint/no-misused-promises": [2, {
+      "checksVoidReturn": {
+        "attributes": false,
+      }
+    }],
+    "@typescript-eslint/indent": 0,
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/semi": "warn",
+    "@typescript-eslint/comma-dangle": "warn",
+    "@typescript-eslint/quotes": "warn",
+    "@typescript-eslint/strict-boolean-expressions": "warn",
+    "@typescript-eslint/restrict-template-expressions": "warn",
+    "@typescript-eslint/member-delimiter-style": "warn",
+    "@typescript-eslint/no-misused-promises": "warn",
+    "@typescript-eslint/space-before-function-paren": 0,
+    "@typescript-eslint/explicit-function-return-type": "warn",
+  },
+  settings: {
+    'import/resolver': {
+      "typescript": {
+        "project": "./tsconfig.json"
+      }
+    },
+    'react': {
+      "version": "detect"
+    },
   }
 }

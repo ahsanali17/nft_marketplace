@@ -5,20 +5,20 @@ import { useAccount, useNetwork } from 'wagmi'
 import MyNFTCard from '../../components/MyNFTCard/MyNFTCard'
 
 const MyNFTs = (): JSX.Element => {
-  const { address } = useAccount();
-  const { chain } = useNetwork();
+  const { address } = useAccount()
+  const { chain } = useNetwork()
 
   const { data: nftWalletNFT } = useEvmWalletNFTs({
     address: address ?? '',
     chain: chain?.id,
     format: 'decimal'
-  });
+  })
 
   const sortedCollections = nftWalletNFT?.sort((a, b) =>
     (a?.name ?? '').localeCompare(b?.name ?? '')
-  );
+  )
 
-  console.log(sortedCollections, 'sorted');
+  console.log(sortedCollections, 'sorted')
 
   return (
     <div

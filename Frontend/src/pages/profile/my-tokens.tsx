@@ -10,25 +10,25 @@ const MyTokens = (): JSX.Element => {
 
   const { data: tokens } = useEvmWalletTokenBalances({
     address: address ?? '',
-    chain: chain?.id,
+    chain: chain?.id
   })
 
   const { data: nativeBalance } = useEvmNativeBalance({
     address: address ?? '',
-    chain: chain?.id,
+    chain: chain?.id
   })
 
   console.log(nativeBalance, 'llllllllllllll')
 
   console.log(tokens, 'tokens****')
   return (
-    <div className="flex justify-center sm:px-4 p-12" style={{ padding: '6rem 2rem'}}>
+    <div className="flex justify-center sm:px-4 p-12" style={{ padding: '6rem 2rem' }}>
       <div className="w-full minmd:w-4/5">
         <div className='flex flex-1 flex-row'>
-          <h1 className="flex-1 before:first:font-poppins dark:text-white text-nft-black-1 text-2xl minlg:text-4xl font-semibold sm:mb-4" style={{fontWeight: 'bold', paddingTop: '1rem', paddingLeft: '2rem', paddingBottom: '1rem', fontSize: '1.8rem'}}>
+          <h1 className="flex-1 before:first:font-poppins dark:text-white text-nft-black-1 text-2xl minlg:text-4xl font-semibold sm:mb-4" style={{ fontWeight: 'bold', paddingTop: '1rem', paddingLeft: '2rem', paddingBottom: '1rem', fontSize: '1.8rem' }}>
             Tokens
           </h1>
-          <h1 className="flex-1 before:first:font-poppins dark:text-white text-nft-black-1 text-2xl minlg:text-4xl font-semibold sm:mb-4" style={{fontWeight: 'bold', paddingTop: '1rem', paddingLeft: '2rem', paddingBottom: '1rem', fontSize: '1.3rem'}}>
+          <h1 className="flex-1 before:first:font-poppins dark:text-white text-nft-black-1 text-2xl minlg:text-4xl font-semibold sm:mb-4" style={{ fontWeight: 'bold', paddingTop: '1rem', paddingLeft: '2rem', paddingBottom: '1rem', fontSize: '1.3rem' }}>
             Wallet Balance: {nativeBalance?.balance.ether}/ether
           </h1>
         </div>
