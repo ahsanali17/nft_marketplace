@@ -3,7 +3,7 @@ import { WagmiConfig } from 'wagmi'
 import { ThemeProvider } from 'next-themes'
 import { SessionProvider } from 'next-auth/react'
 import Script from 'next/script'
-import { client } from './wagmiClient'
+import { client } from './api/wagmiClient/wagmiClient'
 
 import { NFTProvider } from '../../context/NFTContext'
 
